@@ -1,36 +1,53 @@
-import {Directive, HostListener, forwardRef, ElementRef, Inject, Optional, OnInit} from "@angular/core";
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
-import {FORMATTER_PARSER, FormatParseFn} from "../../injects/formatterParser";
+import {Directive, ElementRef, forwardRef, Host, HostListener, OnInit, Optional, SkipSelf} from "@angular/core";
+import {ControlContainer, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {AbstractFormControlModel} from "../../model/base/form-control";
+import {DynamicFormService} from "../../services/dynamic-form.service";
 
-const CONTROL_ACCESSOR = {
+const CONTROL_VALUE_ACCESSOR = {
+  name: 'formatterParserValueAccessor',
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => FormatterParserDirective),
   multi: true
 };
 
 @Directive({
-  inputs: ['config', 'group'],
+  inputs: ['config', 'formControlName'],
   selector: '[formatterParser]',
-  providers: [CONTROL_ACCESSOR]
+  providers: [
+    CONTROL_VALUE_ACCESSOR
+  ]
 })
 export class FormatterParserDirective implements ControlValueAccessor, OnInit {
 
+  // Input binding
   config: AbstractFormControlModel;
-  group: any;
+  // Input binding
+  formControlName: string;
 
-  formatterParserView: Function[] = [];
-  formatterParserModel: Function[] = [];
+  // Container component reference
+  formControl: FormControl;
 
-  onChange = (_: any) => {
-  };
-  onTouched = () => {
-  };
+  protected formatterParserView: Function[] = [];
+  protected formatterParserModel: Function[] = [];
 
   constructor(private _elementRef: ElementRef,
-              @Optional() @Inject(FORMATTER_PARSER) private FORMATTER_PARSER: FormatParseFn[]) {
-
+              private dfs: DynamicFormService,
+              //THX to https://github.com/SanderElias for this hint
+              @Optional() @Host() @SkipSelf() private fcd: ControlContainer) {
   }
+
+  ngOnInit(): void {
+    this.formControl = (<any>this.fcd).form.controls[this.formControlName];
+    this.updateFormatterAndParser();
+  }
+
+  onChange = (value: any) => {
+    return value;
+  };
+
+  onTouched = () => {
+    //not implemented
+  };
 
   registerOnChange(fn: (_: any) => void): void {
     this.onChange = fn;
@@ -40,56 +57,39 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
     this.onTouched = fn;
   }
 
-  @HostListener('blur', ['$event'])
-  onBlur($event: KeyboardEvent) {
-    this.onTouched();
-  }
-
-  ngOnInit(): void {
-    this.updateFormatterAndParser();
-  }
-
-  // Parser: View --> Model
+  // Parser: View to Model
   @HostListener('input', ['$event'])
   onControlInput($event: KeyboardEvent) {
+
     const input = $event.target as HTMLInputElement;
     const value: string = input.value.toString();
 
-    //write value to view
-    const viewValue = this.transformAll(this.formatterParserView, value);
-    input.value = viewValue;
+    //write value to view (visible text of the form control)
+    input.value = this.formatterParserView.reduce((state, transform) => transform(state), value || null);
 
-    //write value to model
-    const modelValue: any = this.transformAll(this.formatterParserModel, value);
+    //write value to model (value stored in FormControl)
+    const modelValue = this.formatterParserModel.reduce((state, transform) => transform(state), value || null);
     this.onChange(modelValue);
-
   }
 
-  // Formatter: Model --> View
+  // Formatter: Model to View
   writeValue(value: any): void {
-      const input: HTMLInputElement = this._elementRef.nativeElement;
+    const input: HTMLInputElement = this._elementRef.nativeElement;
 
-      //write value to view
-      const viewValue: any = this.transformAll(this.formatterParserView, value);
-      input.value = viewValue;
+    //write value to view (visible text of the form control)
+    input.value = this.formatterParserView.reduce((state, transform) => transform(state), value);
 
-      //write value to model
-      const modelValue = this.transformAll(this.formatterParserModel, value);
-      this.group.patchValue(modelValue);
+    //write value to model (value stored in FormControl)
+    const modelValue = this.formatterParserModel.reduce((state, transform) => transform(state), value);
+    this.formControl.patchValue(modelValue);
   }
 
-  transformAll(arr: any[], value: any): any {
-    let transformedValue: any = value;
+  //fetch formatter and parser form config and update props
+  updateFormatterAndParser(): void {
 
-    for (let i: number = 0; i < arr.length; i++) {
-      transformedValue = arr[i](transformedValue);
-    }
+    this.formatterParserView = [];
+    this.formatterParserModel = [];
 
-    return transformedValue;
-  }
-
-  /* Formatter And Parser */
-  updateFormatterAndParser() {
     if (!this.config) {
       return
     }
@@ -98,36 +98,18 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
       //setup formatterParser functions for view and model values
       this.config.formatterParser
         .forEach((formatterConfig: any) => {
-          const fPF: any = this.getFormatParseFunction(formatterConfig.name, formatterConfig.params);
+          const fPF: any = this.dfs.getFormatParseFunction(formatterConfig.name, formatterConfig.params);
+          const t = formatterConfig.target;
 
-          if (formatterConfig.target == 0 || formatterConfig.target == 2) {
+          if (t == 0 || t == 2) {
             this.formatterParserView.push(fPF);
           }
-
-          if (formatterConfig.target == 1 || formatterConfig.target == 2) {
+          if (t == 1 || t == 2) {
             this.formatterParserModel.push(fPF);
           }
         });
     }
 
-  }
-
-  getFormatParseFunction(functionName: string, params: any[]): FormatParseFn | undefined {
-    let formatParseFunction: Function;
-
-    if (this.FORMATTER_PARSER) {
-      formatParseFunction = this.FORMATTER_PARSER.find(component => {
-        return functionName === component.name;
-      });
-    } else {
-      throw new Error(`No function provided via FORMATTER_PARSER`);
-    }
-
-    if (!(typeof formatParseFunction === "function")) {
-      throw new Error(`Component "${formatParseFunction}" with name ${functionName} is not provided via FORMATTER_PARSER.`);
-    }
-
-    return (formatParseFunction) ? formatParseFunction(...params) : formatParseFunction;
   }
 
 }
