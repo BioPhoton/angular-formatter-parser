@@ -104,19 +104,19 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
     if ('formatterParser' in this.config) {
       //setup formatterParser functions for view and model values
       this.config.formatterParser
-        .forEach((formatterConfig: any) => {
-          const targetBoth: number = 2;
-          const fPF: IFormatterParserFn = this.fps.getFormatParseFunction(formatterConfig.name, formatterConfig.params);
-          const t = (formatterConfig.target === undefined) ? targetBoth : formatterConfig.target;
+          .forEach((formatterConfig: any) => {
+            const targetBoth: number = 2;
+            const fPF: IFormatterParserFn = this.fps.getFormatParseFunction(formatterConfig.name, formatterConfig.params);
+            const t = (formatterConfig.target === undefined) ? targetBoth : formatterConfig.target;
 
-          if (t == 1 || t == 2) {
-            this.formatterParserModel.push(fPF);
-          }
+            if (t == 1 || t == 2) {
+              this.formatterParserModel.push(fPF);
+            }
 
-          if ((t == 0 || t == 2)) {
+            if ((t == 0 || t == 2)) {
               this.formatterParserView.push(fPF);
-          }
-        });
+            }
+          });
 
     }
 
