@@ -3,7 +3,6 @@ import { ITextMaskConfigOptions } from './struct/textMask-config-options';
 import { createAutoCorrectedDatePipe, createNumberMask, emailMask } from 'text-mask-addons/dist/textMaskAddons';
 import { FormatterParserService } from '../formatter-parser.service';
 import { IFormatterParserFn } from '../struct/formatter-parser-function';
-import { ibanMask } from 'app/modules/dynamic-form-addons/payment/sepa/formatter-parser/iban-mask';
 
 
 @Injectable()
@@ -58,10 +57,6 @@ export class TextMaskService {
       safeConfig.keepCharPositions = config.keepCharPositions
     }
 
-    if ('showMask' in config) {
-      safeConfig.showMask = config.showMask;
-    }
-
     return safeConfig;
   }
 
@@ -80,12 +75,6 @@ export class TextMaskService {
       case 'createAutoCorrectedDatePipe':
         safeConfig.pipe = createAutoCorrectedDatePipe('mm/dd/yyyy');
         safeConfig.keepCharPositions = true;
-        break;
-      case 'ibanMask':
-      case 'ibanMaskStrict':
-        const toUpperCase:IFormatterParserFn = this.fps.getFormatParseFunction('toUpperCase');
-        safeConfig.mask = this.fps.getFormatParseFunction(addonName);
-        safeConfig.pipe = TextMaskService.formatterParserToPipe(toUpperCase);
         break;
     }
 

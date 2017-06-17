@@ -4,19 +4,18 @@ import {
   forwardRef,
   Host,
   HostListener,
-  InjectionToken,
   OnInit,
   Optional,
   SkipSelf
 } from '@angular/core';
 import { ControlContainer, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DynamicFormElementModel } from '../../dymanic-form-element/model/base/form-control';
 import { FormatterParserService } from '../formatter-parser.service';
 import { IFormatterParserFn } from '../struct/formatter-parser-function';
 /*TEXT-MASK EXCEPTION ==============================================================*/
 import { TextMaskService } from './textMask.service';
 import { createTextMaskInputElement } from 'text-mask-core/dist/textMaskCore';
 import { ITextMaskConfigOptions } from './struct/textMask-config-options';
+import { IFormatterParserConfig } from '../struct/formatter-parser-config';
 /*============================================================== TEXT-MASK EXCEPTION*/
 
 const CONTROL_VALUE_ACCESSOR = {
@@ -36,7 +35,7 @@ const CONTROL_VALUE_ACCESSOR = {
 export class FormatterParserTextMaskDirective implements ControlValueAccessor, OnInit {
 
   // Input binding
-  config: DynamicFormElementModel;
+  config: IFormatterParserConfig;
   // Input binding
   formControlName: string;
 

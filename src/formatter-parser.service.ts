@@ -1,7 +1,7 @@
 import {FORMATTER_PARSER} from "./formatter-parser.injectionToken";
 import {Inject, Injectable, Optional} from "@angular/core";
 import {IFormatterParserFn} from "./struct/formatter-parser-function";
-import {FormatterParser} from "app/modules/formatter-parser/formatterParser";
+import { FormatterParser } from './formatterParser';
 
 @Injectable()
 export class FormatterParserService {
