@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/username/repo"
+    "url": "https://github.com/BioPhoton/angular-formatter-parser"
   },
   "author": {
     "name": "Michael Hladky",
@@ -25,7 +25,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/username/repo/issues"
+    "url": "https://github.com/BioPhoton/angular-formatter-parser/issues"
   },
   "devDependencies": {
     "@angular/common": "^4.0.0",
