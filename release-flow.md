@@ -11,7 +11,6 @@
 
 - npm run changelog
 - git add CHANGELOG.md
-- git commit -m"docs(CHANGELOG): auto updated CHANGELOG.md"
 
 - git commit -m"chore(release): [VERSION]"
 - git tag [VERSION](i.e. 0.0.1)
