@@ -1,5 +1,10 @@
-<a name="0.0.0-alpha.3"></a>
-# [0.0.0-alpha.3](https://github.com/BioPhoton/angular-formatter-parser/compare/v0.0.1...v0.0.0-alpha.3) (2017-06-18)
+<a name="0.0.0-alpha.4"></a>
+# [0.0.0-alpha.4](https://github.com/BioPhoton/angular-formatter-parser/compare/v0.0.1-0...v0.0.0-alpha.4) (2017-06-18)
+
+
+
+<a name="0.0.1-0"></a>
+## [0.0.1-0](https://github.com/BioPhoton/angular-formatter-parser/compare/v0.0.1...v0.0.1-0) (2017-06-18)
 
 
 
