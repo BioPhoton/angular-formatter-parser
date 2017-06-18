@@ -1,57 +1,72 @@
 # angular-formatter-parser
 
-## Installation
+Angular Formatter Parser - The AngularJS Port
 
-To install this library, run:
 
-```bash
-$ npm install angular-formatter-parser --save
+The angular FormatterParser library in a port of the Angular1 `ngModel.$formatter` and `ngModel.§parser` implementation.
+
+It is implemented as an configurable directive which mimics the angular reactive-forms validation.
+
+Like the `Validators` service provides a set default validation functions there is a `FormatterParser` service that provides a set of default transform functions.
+
+When you custom a custom validator you implement the `ValidatorFn` on your custom validation function.
+Then you implement `ControlValueAccessor` and use the `NG_VALIDATORS` token to hook into the validation section and provide your custom function as a validator.
+
+Same with transform functions with a little more options. As you know in angular1 we have `$parser` and `$formatter`.
+`$parser`, the array of transform functions that are called when the model changes and updates the `HtmlInputElement` value.
+And `$formatter`, the array of transform functions that are called when the `HtmlInputElement` fires it's input event with changes and updates the model.
+
+We hook into the two directions by using the `ControlValueAccessor` for the `$formatter` direction, and the `@HostListener('input')` to hook into the `$parser` direction.
+
+To register our transform functions we use the `FORMATTER_PARSER` token to provide our functions
+
+To apply validators to a `FormControl` you setup an array of validator functions, default or custom and provide it under the validators key in the `FormControl` constructor parmas.
+
+To apply transform functions to a `FormControl` use use the `formatterParser` directive which also binds a config array.
+But instead of providing an array of validator functions use just provide an array of strings that are the name of the transform functions. the directive automatically recogizes the strings and finds the related transform function.
+Your custom transform functions can be registered under `FORMATTER_PARSER`, similar as you would with `NG_VALIDATORS`.
+
+
+
+============
+
+Implementation:
+
 ```
-
-## Consuming your library
-
-Once you have published your library to npm, you can import your library in any Angular application by running:
-
-```bash
-$ npm install angular-formatter-parser
-```
-
-and then from your Angular `AppModule`:
-
-```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
-
-// Import your library
-import { SampleModule } from 'angular-formatter-parser';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-
-    // Specify your library as an import
-    LibraryModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
-```
+export class AppModule {
 
-Once your library is imported, you can use its components, directives and pipes in your Angular application:
+}
 
-```xml
-<!-- You can now use your library component in app.component.html -->
-<h1>
-  {{title}}
-</h1>
-<sampleComponent></sampleComponent>
 ```
+To
+Implement Module
+
+use directive with config
+
+==
+
+create function
+
+setup provider
+
+use in config
+
+===
+
+
 
 ## Development
 

@@ -4,19 +4,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { FormatterParserDirective } from './formatter-parser.directive';
 import { FormatterParserService } from './formatter-parser.service';
-import { FormatterParserTextMaskDirective } from './text-mask-implementation/formatter-parser-text-mask.directive';
-import { TextMaskService } from './text-mask-implementation/textMask.service';
 import { FormatterParser } from './formatterParser';
 
 export * from './formatter-parser.directive';
 export * from './formatter-parser.service';
-export * from './text-mask-implementation/formatter-parser-text-mask.directive';
-export * from './text-mask-implementation/textMask.service';
 export * from './formatterParser'
 
 const EXPORTS = [
     FormatterParserDirective,
-    FormatterParserTextMaskDirective
 ];
 
 
@@ -35,7 +30,6 @@ export class FormatterParserModule {
             ngModule: FormatterParserModule,
             providers: [
                 FormatterParserService,
-                TextMaskService,
                 {provide: FormatterParser, useClass: FormatterParser}
             ]
         };

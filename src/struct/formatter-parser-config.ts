@@ -1,4 +1,4 @@
 export interface IFormatterParserConfig {
-  formatterParser?: IFormatterParserConfig[]
+    formatterParser?: IFormatterParserConfig[]
 }
 
