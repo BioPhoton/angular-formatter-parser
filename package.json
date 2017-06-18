@@ -11,7 +11,7 @@
     "lint": "tslint --type-check --project tsconfig.json src/**/*.ts",
     "test": "tsc && karma start",
     "recommended-bump": "conventional-recommended-bump -p angular",
-    "changelog": "conventional-changelog --pkg ./src/package.json --config ./changelog/changelog.config.js -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
+    "changelog": "conventional-changelog --pkg ./src/package.json --config ./changelog/changelog.config.js -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md &&  git commit -m\"docs(CHANGELOG): auto updated CHANGELOG.md\"",
     "github-release": "conventional-github-releaser -p angular -r 0"
   },
   "repository": {
