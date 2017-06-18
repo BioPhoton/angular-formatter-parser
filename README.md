@@ -66,6 +66,14 @@ use in config
 
 ===
 
+## Rough releas flow
+- lookup recommended version bump i.e.: patch
+- cd src
+- npm version [BUMP_TYPE] -m "chore(release): %s"
+- cd ..
+- npm run changelog
+- npm run github-release
+- npm publish
 
 ## License
 
