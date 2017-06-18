@@ -2,10 +2,10 @@
 - npm run build
 - npm run recommended-bump (lookup for recommended version bump i.e.: patch)
 - cd src
-- bump version manually
+- bump version manually and git add it
 - cd ..
+- npm run changelog
 - npm version [BUMP_TYPE] -m "chore(release): %s"
 - git push --follow-tags
-- npm run changelog
 - npm run github-release
 - npm run release
