@@ -1,5 +1,15 @@
+<a name="0.1.3"></a>
+## [0.1.3](https://github.com/BioPhoton/angular-formatter-parser/compare/0.1.2...v0.1.3) (2017-06-18)
+
+
+### Bug Fixes
+
+* **release workflow:** order ([37e34c0](https://github.com/BioPhoton/angular-formatter-parser/commit/37e34c0))
+
+
+
 <a name="0.1.2"></a>
-## [0.1.2](https://github.com/BioPhoton/angular-formatter-parser/compare/v0.0.0-alpha.5...v0.1.2) (2017-06-18)
+## [0.1.2](https://github.com/BioPhoton/angular-formatter-parser/compare/v0.0.0-alpha.5...0.1.2) (2017-06-18)
 
 
 ### Bug Fixes
