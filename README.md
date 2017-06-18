@@ -27,10 +27,7 @@ But instead of providing an array of validator functions use just provide an arr
 Your custom transform functions can be registered under `FORMATTER_PARSER`, similar as you would with `NG_VALIDATORS`.
 
 
-
-============
-
-Implementation:
+## Usage:
 
 ```
 import { BrowserModule } from '@angular/platform-browser';
@@ -51,22 +48,8 @@ export class AppModule {
 }
 
 ```
-To
-Implement Module
 
-use directive with config
-
-==
-
-create function
-
-setup provider
-
-use in config
-
-===
-
-## Rough releas flow
+## Rough release flow
 - npm run recommended-bump (lookup for recommended version bump i.e.: patch)
 - cd src
 - npm version [BUMP_TYPE] -m "chore(release): %s"
