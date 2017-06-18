@@ -1,5 +1,16 @@
-<a name="0.0.0-alpha.4"></a>
-# [0.0.0-alpha.4](https://github.com/BioPhoton/angular-formatter-parser/compare/v0.0.1-0...v0.0.0-alpha.4) (2017-06-18)
+<a name="0.1.1"></a>
+## [0.1.1](https://github.com/BioPhoton/angular-formatter-parser/compare/v0.0.0-alpha.5...v0.1.1) (2017-06-18)
+
+
+### Bug Fixes
+
+* **release flow:** wip ([e770474](https://github.com/BioPhoton/angular-formatter-parser/commit/e770474))
+* **reset versions:** experiment with release workflow ([66fb805](https://github.com/BioPhoton/angular-formatter-parser/commit/66fb805))
+
+
+
+<a name="0.0.0-alpha.5"></a>
+# [0.0.0-alpha.5](https://github.com/BioPhoton/angular-formatter-parser/compare/v0.0.1-0...v0.0.0-alpha.5) (2017-06-18)
 
 
 
