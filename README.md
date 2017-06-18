@@ -67,7 +67,7 @@ use in config
 ===
 
 ## Rough releas flow
-- lookup recommended version bump i.e.: patch
+- npm run recommended-bump (lookup for recommended version bump i.e.: patch)
 - cd src
 - npm version [BUMP_TYPE] -m "chore(release): %s"
 - cd ..
