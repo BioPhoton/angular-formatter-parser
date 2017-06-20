@@ -225,11 +225,10 @@ But instead of providing an array of validator functions use just provide an arr
 Your custom transform functions can be registered under `FORMATTER_PARSER`, similar as you would with `NG_VALIDATORS`.
 
 
-
-## License
+# License
 
 MIT © [Michael Hladky](mailto:michael@hladky.at)
 
 Copyright 2017 [Michael Hladky](mailto:michael@hladky.at). All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
-Can be found in the LICENSE file at [url to repo here]
+can be found in the LICENSE file at [angular-formatter-parser](https://github.com/BioPhoton/angular-formatter-parser/blob/master/LICENSE.txt)
