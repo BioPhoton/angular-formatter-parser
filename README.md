@@ -19,6 +19,10 @@ Easy to implement and elegant to use it also provides the possibility to registe
 
 ### Implement Library
 
+``` bash
+$ npm install angular-star-rating --save
+```
+
 ``` typescript
 // app.module.ts
 ...
