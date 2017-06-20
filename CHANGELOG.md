@@ -1,5 +1,15 @@
+<a name="0.1.7"></a>
+## [0.1.7](https://github.com/BioPhoton/angular-formatter-parser/compare/0.1.6...v0.1.7) (2017-06-20)
+
+
+### Bug Fixes
+
+* **default transform functions:** fixed transform result and typing, also fixed export of token ([ba425f9](https://github.com/BioPhoton/angular-formatter-parser/commit/ba425f9))
+
+
+
 <a name="0.1.6"></a>
-## [0.1.6](https://github.com/BioPhoton/angular-formatter-parser/compare/0.1.4...v0.1.6) (2017-06-20)
+## [0.1.6](https://github.com/BioPhoton/angular-formatter-parser/compare/0.1.4...0.1.6) (2017-06-20)
 
 
 ### Bug Fixes
