@@ -8,20 +8,16 @@ import { FormatterParser } from './formatterParser';
 
 export * from './formatter-parser.directive';
 export * from './formatter-parser.service';
-export * from './formatterParser'
-
-const EXPORTS = [
-    FormatterParserDirective,
-];
-
+export * from './formatterParser';
+export * from './formatter-parser.injectionToken';
 
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule
     ],
-    declarations: [EXPORTS],
-    exports: [EXPORTS]
+    declarations: [FormatterParserDirective],
+    exports: [FormatterParserDirective, ReactiveFormsModule]
 })
 export class FormatterParserModule {
 
@@ -29,7 +25,7 @@ export class FormatterParserModule {
         return {
             ngModule: FormatterParserModule,
             providers: [
-                FormatterParserService,
+                 FormatterParserService,
                 {provide: FormatterParser, useClass: FormatterParser}
             ]
         };
