@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { IFormatterParserConfig } from '../../../../../../dist/struct/formatter-parser-config';
+import { IFormatterParserConfig } from 'angular-formatter-parser/struct/formatter-parser-config';
 
 @Component({
   selector: 'app-basic-usage',
