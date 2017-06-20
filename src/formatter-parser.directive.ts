@@ -75,6 +75,11 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
     onControlInput($event: KeyboardEvent) {
         const rawValue: any = this.inputElement.value;
 
+        // If there is a reactive FormControl present trigger onTouch
+        if (this.onTouch) {
+            this.onTouch();
+        }
+
         // write value to view (visible text of the form control)
         this.inputElement.value = this.formatterParserView
             .reduce((state: any, transform: IFormatterParserFn) => transform(state).result, rawValue || null);
@@ -82,7 +87,11 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
         // write value to model (value stored in FormControl)
         const modelValue = this.formatterParserModel
             .reduce((state: any, transform: IFormatterParserFn) => transform(state).result, rawValue || null);
-        this.onModelChange(modelValue);
+
+        // If there is a reactive formControl present update its model
+        if (this.onModelChange) {
+            this.onModelChange(modelValue);
+        }
     }
 
 
@@ -96,10 +105,14 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
         // write value to model (value stored in FormControl)
         const modelValue = this.formatterParserModel
             .reduce((state: any, transform: IFormatterParserFn) => transform(state).result, rawValue);
+
         // prevent cyclic function calls
         if (rawValue !== modelValue) {
-            // @TODO consider other way to call patchValue
-            this.formControl.patchValue(modelValue);
+            // If there is a reactive FormControl present update its model
+            if (this.onModelChange) {
+                // @TODO consider other way to call patchValue
+                this.formControl.patchValue(modelValue);
+            }
         }
 
     }
