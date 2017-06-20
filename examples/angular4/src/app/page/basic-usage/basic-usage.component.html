@@ -1,0 +1,8 @@
+<h1>Basic Usage of the formatterPerser dierctive</h1>
+
+<div [formGroup]="basicFormGroup">
+
+  <input type="text" [formControlName]="'name'" [formatterParser]="formatterParserConfig">
+  <p>{{basicFormGroup.value | json}}</p>
+
+</div>
