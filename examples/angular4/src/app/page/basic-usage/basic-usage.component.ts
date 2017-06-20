@@ -48,9 +48,7 @@ export class BasicUsageComponent implements OnInit {
       formatterParser: [
         {
           name: 'maskString',
-          params: [
-            '000 000 000',
-            {'0': /[0-9]/}],
+          params: ['000 000 000', {'0': /[0-9]/}],
           target: 2
         },
         {

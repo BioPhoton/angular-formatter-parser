@@ -6,7 +6,7 @@
 
     <form [formGroup]="basicFormGroup">
       <div class="form-group">
-        <label>Name in capitalized words
+        <label>Name
           <small>(target view and model)</small>
         </label>
         <input type="text" class="form-control"
@@ -28,7 +28,7 @@
 
       <div class="form-group">
         <label>9 Digit Code
-          <small>(User custom transform function)</small>
+          <small>(custom transform function)</small>
         </label>
         <input type="text" class="form-control"
                [formControlName]="'code'" [formatterParser]="fpCodeConfig">
