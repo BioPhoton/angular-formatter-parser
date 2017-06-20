@@ -4,13 +4,14 @@
 - cd src
 - bump version manually to [VERSION]
 - git add ./src/package.json
-- npm run build
 - cd ..
 - bump version manually to [VERSION]
 - git add ./package.json
 
 - npm run changelog
 - git add CHANGELOG.md
+
+- npm run build
 
 - git commit -m"chore(release): [VERSION]"
 - git tag [VERSION](i.e. 0.0.1)
