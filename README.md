@@ -4,6 +4,9 @@
 This library provides an option to hook into the value flow of inputs and other "editable" html elements.
 Easy to implement and elegant to use it also provides the possibility to register custom transform functions over a InjectionToken.
 
+![License](https://img.shields.io/npm/l/angular-formatter-parser.svg)
+[![NPM Version](https://img.shields.io/npm/v/angular-formatter-parser.svg)](https://www.npmjs.com/package/angular-formatter-parser)
+
 ## Demo
 
 - [x] [angular4 demo with ng-cli](https://github.com/BioPhoton/angular-formatter-parser/tree/master/examples/angular4)
