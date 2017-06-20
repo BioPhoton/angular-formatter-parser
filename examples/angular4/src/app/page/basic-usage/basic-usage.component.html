@@ -1,8 +1,41 @@
-<h1>Basic Usage of the formatterPerser dierctive</h1>
+<h1>Basic Usage</h1>
 
-<div [formGroup]="basicFormGroup">
+<div class="row">
+  <div class="col-sm-6">
 
-  <input type="text" [formControlName]="'name'" [formatterParser]="formatterParserConfig">
-  <p>{{basicFormGroup.value | json}}</p>
 
+    <form [formGroup]="basicFormGroup">
+      <div class="form-group">
+        <label>Name in capitalized words
+          <small>(target view and model)</small>
+        </label>
+        <input type="text" class="form-control"
+               [formControlName]="'name'" [formatterParser]="fpNameConfig">
+        <small id="name1Help" class="form-text text-muted">Model value: {{basicFormGroup.get('name').value | json}}
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Coupon Code
+          <small>(target view and model different)</small>
+        </label>
+        <input type="text" class="form-control"
+               [formControlName]="'couponcode'" [formatterParser]="fpCouponConfig">
+        <small class="form-text text-muted">Model value: {{basicFormGroup.get('couponcode').value |
+          json}}
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>9 Digit Code
+          <small>(User custom transform function)</small>
+        </label>
+        <input type="text" class="form-control"
+               [formControlName]="'code'" [formatterParser]="fpCodeConfig">
+        <small id="code1Help" class="form-text text-muted">Model value: {{basicFormGroup.get('code').value | json}}
+        </small>
+      </div>
+    </form>
+
+  </div>
 </div>

@@ -2,29 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-
-// Import your library
-import { FormatterParserModule} from 'angular-formatter-parser';
-import { RouterModule, Routes } from '@angular/router';
-import { BasicUsageComponent } from './page/basic-usage/basic-usage.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
-const ROOTS: Routes = [
-  {
-    path: '',
-    redirectTo: 'basic-usage',
-    pathMatch: 'full'
-  },
-  {
-    path: 'basic-usage',
-    component: BasicUsageComponent
-  },
-  {
-    path: '**',
-    redirectTo: 'basic-usage',
-    pathMatch: 'full'
-  }
-];
+// Import your library
+import { FORMATTER_PARSER, FormatterParserModule } from 'angular-formatter-parser';
+// Project specific imports
+import { BasicUsageComponent } from './page/basic-usage/basic-usage.component';
+import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './core/core.module';
+import { maskString } from './core/custom-transform-functions/mask-string';
 
 @NgModule({
   declarations: [
@@ -34,10 +19,14 @@ const ROOTS: Routes = [
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(ROOTS),
-    FormatterParserModule.forRoot()
+    AppRoutingModule,
+    FormatterParserModule.forRoot(),
+    CoreModule
   ],
-  providers: [],
+  providers: [
+    { provide: FORMATTER_PARSER, useValue: maskString, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
