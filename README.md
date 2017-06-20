@@ -1,9 +1,8 @@
 # angular-formatter-parser
 
-Angular Formatter Parser - The AngularJS Port
+#### Angular Formatter Parser - The AngularJS Port
 
-
-The angular FormatterParser library in a port of the Angular1 `ngModel.$formatter` and `ngModel.§parser` implementation.
+The angular FormatterParser library in a port of the Angular 1.x `ngModel.$formatter` and `ngModel.§parser` implementation.
 
 It is implemented as an configurable directive which mimics the angular reactive-forms validation.
 
@@ -26,12 +25,23 @@ To apply transform functions to a `FormControl` use use the `formatterParser` di
 But instead of providing an array of validator functions use just provide an array of strings that are the name of the transform functions. the directive automatically recogizes the strings and finds the related transform function.
 Your custom transform functions can be registered under `FORMATTER_PARSER`, similar as you would with `NG_VALIDATORS`.
 
+## Demo
 
-## Usage:
+- [ ] [angular4 demo with ng-cli](https://github.com/BioPhoton/angular-formatter-parser/tree/master/examples/angular4)
+- [ ] [plunkr demo](https://embed.plnkr.co/7xFXTccR1hfLGbPBTjai/)
 
-```
+## Basic Usage:
+
+### Implement Library
+
+```typescript
+// app.module.ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
+// IMPORT YOUR LBRARY
+import { FormatterParserModule } from 'angular-formatter-parser';
+
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -40,7 +50,9 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
+    FormatterParserModule.forRoot();
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {
@@ -49,6 +61,176 @@ export class AppModule {
 
 ```
 
+
+### Create formatterParser config object
+
+```typescript
+// app.component.ts
+import { Component} from '@angular/core';
+import { IFormatterParserConfig } from 'angular-formatter-parser/struct/formatter-parser-config';
+
+@Component({
+  selector: 'app-basic-usage',
+  templateUrl: './basic-usage.component.html',
+  styleUrls: ['./basic-usage.component.scss']
+})
+export class BasicUsageComponent {
+
+  fPConfig: IFormatterParserConfig = {
+    formatterParser:[
+     { name: 'toCapitalized' }
+    ]
+  }
+
+  constructor() { }
+
+}
+
+```
+
+
+### Use directive with config object
+
+```html
+// app.component.html
+<input type="text" [formatterParser]="fPConfig">
+
+```
+
+
+## Usage with Reactive Forms
+
+### Create formatterParser config object
+
+```typescript
+// app.component.ts
+
+...
+export class BasicUsageComponent {
+
+  fPConfig: IFormatterParserConfig = {
+    ...
+  }
+
+  formGroup: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.basicFormGroup = this.fb.group({ name: [] });
+  }
+
+}
+```
+
+
+### Set formGroup and formControlName
+
+```html
+// app.component.html
+<form [formGroup]="formGroup">
+  <input type="text" formControlName="name" [formatterParser]="fPConfig">
+</form>
+```
+
+
+### Specify the target (transform the value of the view or the model)
+
+```typescript
+// app.component.ts
+...
+export class BasicUsageComponent {
+
+  fPConfig: IFormatterParserConfig = {
+    formatterParser:[
+     //0 for view, 1 for model, 2 or nothing for both
+     { name: 'toCapitalized', target: 0  }
+    ]
+  }
+
+}
+
+```
+
+
+### Use multiple transform functions
+
+```typescript
+// app.component.ts
+...
+  fPConfig: IFormatterParserConfig = {
+    formatterParser:[
+     { name: 'toCapitalized', target: 0},
+     { name: 'replaceString',  params: [/ /g, ''], target: 1 }
+    ]
+  }
+...
+```
+
+## Use custom transform function
+
+### Create custom function
+
+```typescript
+//add-questionmark-transform.ts
+import { IFormatterParserFn } from 'angular-formatter-parser/struct/formatter-parser-function';
+
+export function addQuestionmark(value:any): IFormatterParserResult {
+    const transformadValue = value;
+    const result:IFormatterParserResult = {
+      name: "addQuestionmark",
+      result : transformadValue+'?',
+      previous: value
+    };
+
+    return result;
+}
+
+```
+
+### Provide the function over the FORMATTER_PARSER token
+
+```typescript
+// app.module.ts
+
+...
+// IMPORT FORMATTER_PARSER
+import { FORMATTER_PARSER, FormatterParserModule } from 'angular-formatter-parser';
+...
+
+@NgModule({
+  ...
+  providers: [
+    { provide: FORMATTER_PARSER, useValue: addQuestionmark, multi: true }
+  ]
+  ...
+})
+export class AppModule {
+
+}
+
+```
+
+### Use custom transform function in config object
+
+```typescript
+// app.component.ts
+...
+export class BasicUsageComponent {
+
+  fPConfig: IFormatterParserConfig = {
+    formatterParser:[
+     { name: 'addQuestionMark' }
+    ]
+  }
+
+}
+
+```
+
+
 ## License
 
 MIT © [Michael Hladky](mailto:michael@hladky.at)
+
+Copyright 2017 [Michael Hladky](mailto:michael@hladky.at). All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at [url to repo here]
