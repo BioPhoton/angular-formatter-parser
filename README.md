@@ -79,7 +79,7 @@ export class BasicUsageComponent {
 
 ## Usage with Reactive Forms
 
-### Create formatterParser config object
+### Create FormGroup
 
 ``` typescript
 // app.component.ts
@@ -107,6 +107,7 @@ export class BasicUsageComponent {
 // app.component.html
 <form [formGroup]="formGroup">
   <input type="text" formControlName="name" [formatterParser]="fPConfig">
+  {{formGroup.get('name').value}}
 </form>
 ```
 
