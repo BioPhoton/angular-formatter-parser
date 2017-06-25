@@ -87,7 +87,10 @@ Write-Host "created changelog $preset" -foregroundcolor "green"
 # npm version $bump bumps the version specified in $bump and write the new data back to package.json
 # -m will set a commit message with the version placed by %s
 cd .\src
-npm version $bump -m "chore(release): %s ($preset)"
+npm --no-git-tag-version version $bump
+git add .\src\package.json
+git commit -m "chore(release): $version ($preset)"
+git tag $version
 cd ..
 # pushed the commit
 # --follow-tags also pushed the new tags
