@@ -17,7 +17,7 @@ $status = travis status --no-interactive
 echo $status
 if ( $status -ne "passed")
 {
-    Write-Host "Invalid travis state. State should be passed"
+    Write-Host "Invalid travis state $state. State should be passed"
     Exit
 }
 # deletes the node_modules folder (move them into trash, more reversable)
