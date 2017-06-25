@@ -13,8 +13,13 @@
 # checks the status of the last build of the current repository
 # --no-interactive disables the interactive mode
 # source: https://github.com/travis-ci/travis.rb/blob/master/README.md
-travis status --no-interactive
-
+$status = travis status --no-interactive
+echo $status
+if ($status !== 'passed')
+{
+    Write-Host "Invalid travis state. State should be passed"
+    Exit
+}
 # deletes the node_modules folder (move them into trash, more reversable)
 trash node_modules
 # pulls the latest version
