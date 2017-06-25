@@ -89,7 +89,7 @@ Write-Host "created changelog $preset" -foregroundcolor "green"
 cd .\src
 npm --no-git-tag-version version $bump
 git add .\package.json
-git commit -m "chore(release): $version ($preset)"
+git commit -m "chore(release): $version ($bump)"
 git tag $version
 cd ..
 # pushed the commit
