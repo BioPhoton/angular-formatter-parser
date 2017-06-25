@@ -20,14 +20,17 @@ if ( $status -ne "passed")
     Write-Host "Invalid travis state $state. State should be passed"
     Exit
 }
+Write-Host "checked travis state"
 # deletes the node_modules folder (move them into trash, more reversable)
 trash node_modules
+Write-Host "trashed node_modules"
 # pulls the latest version
 git pull --rebase
 # installs the node dependencies
 npm install
 # run unit tests
 karma start karma.conf.js
+Write-Host "run tests"
 
 # create changelog
 
@@ -71,12 +74,16 @@ $package = (Get-Content "package.json" -Raw) | ConvertFrom-Json
 $version = $package.version
 # commit with comment
 git commit -m"docs(CHANGELOG): $version"
-
-# create version bump
-
+# run build again because we want to have the new version in the dist folder
+npm run build
 # Replace the already bumped package.json with the _package.json initial copy
 trash .\src\package.json
 Rename-Item -Path ".\src\_package.json" -NewName "package.json"
+Write-Host "created changelog"
+
+
+# create version bump
+
 # npm version $bump bumps the version specified in $bump and write the new data back to package.json
 # -m will set a commit message with the version placed by %s
 cd .\src
