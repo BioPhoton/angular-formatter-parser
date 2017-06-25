@@ -17,20 +17,20 @@ $status = travis status --no-interactive
 echo $status
 if ( $status -ne "passed")
 {
-    Write-Host "Invalid travis state $state. State should be passed"
+    Write-Host "Invalid travis state $state. State should be passed"  -foregroundcolor "red"
     Exit
 }
-Write-Host "checked travis state"
+Write-Host "checked travis state" -foregroundcolor "green"
 # deletes the node_modules folder (move them into trash, more reversable)
-trash node_modules
-Write-Host "trashed node_modules"
+# trash node_modules
+Write-Host "trashed node_modules" -foregroundcolor "green"
 # pulls the latest version
 git pull --rebase
 # installs the node dependencies
-npm install
+# npm install
 # run unit tests
 karma start karma.conf.js
-Write-Host "run tests"
+Write-Host "run tests" -foregroundcolor "green"
 
 # create changelog
 
@@ -79,7 +79,7 @@ npm run build
 # Replace the already bumped package.json with the _package.json initial copy
 trash .\src\package.json
 Rename-Item -Path ".\src\_package.json" -NewName "package.json"
-Write-Host "created changelog"
+Write-Host "created changelog $preset" -foregroundcolor "green"
 
 
 # create version bump
@@ -87,17 +87,22 @@ Write-Host "created changelog"
 # npm version $bump bumps the version specified in $bump and write the new data back to package.json
 # -m will set a commit message with the version placed by %s
 cd .\src
-npm version $bump -m "chore(release): %s"
+npm version $bump -m "chore(release): %s ($preset)"
 cd ..
 # pushed the commit
 # --follow-tags also pushed the new tags
 # source: https://git-scm.com/docs/git-push
 git push --follow-tags
+Write-Host "pushed repo" -foregroundcolor "green"
 
 # release on git and npm
 
 # Make a new GitHub release from git metadata based on your commit-convention. In this case angular convention
 # source: https://github.com/conventional-changelog/conventional-github-releaser/blob/master/README.md
 conventional-github-releaser -p $preset
+Write-Host "created github release"  -foregroundcolor "green"
+
 # publish new version on npm
+# cd .\src
 # npm publish
+Write-Host "published on npm :-)"  -foregroundcolor "green"
