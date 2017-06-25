@@ -67,3 +67,23 @@ $version = $package.version
 # commit with comment
 git commit -m"docs(CHANGELOG): $version"
 
+# create version bump
+
+# Replace the already bumped package.json with the _package.json initial copy
+trash .\src\package.json
+Rename-Item -Path ".\src\_package.json" -NewName "package.json"
+# npm version $bump bumps the version specified in $bump and write the new data back to package.json
+# -m will set a commit message with the version placed by %s
+npm version $bump -m "chore(release): %s" &&
+# pushed the commit
+# --follow-tags also pushed the new tags
+# source: https://git-scm.com/docs/git-push
+git push --follow-tags &&
+
+# release on git and npm
+
+# Make a new GitHub release from git metadata based on your commit-convention. In this case angular convention
+# source: https://github.com/conventional-changelog/conventional-github-releaser/blob/master/README.md
+conventional-github-releaser -p $preset &&
+# publish new version on npm
+npm publish
