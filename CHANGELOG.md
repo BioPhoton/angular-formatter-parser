@@ -1,4 +1,15 @@
 <a name="0.1.10"></a>
+## [0.1.10](https://github.com/BioPhoton/angular-formatter-parser/compare/0.1.12...v0.1.10) (2017-06-25)
+
+
+### Bug Fixes
+
+* **release comments:** place right version bump type in comment ([50fe212](https://github.com/BioPhoton/angular-formatter-parser/commit/50fe212))
+* **release workflow:** add npm release to script ([3de56ce](https://github.com/BioPhoton/angular-formatter-parser/commit/3de56ce))
+
+
+
+<a name="0.1.10"></a>
 ## [0.1.10](https://github.com/BioPhoton/angular-formatter-parser/compare/v0.1.11...v0.1.10) (2017-06-25)
 
 
