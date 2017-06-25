@@ -80,12 +80,12 @@ cd ..
 # pushed the commit
 # --follow-tags also pushed the new tags
 # source: https://git-scm.com/docs/git-push
-git push --follow-tags &&
+git push --follow-tags
 
 # release on git and npm
 
 # Make a new GitHub release from git metadata based on your commit-convention. In this case angular convention
 # source: https://github.com/conventional-changelog/conventional-github-releaser/blob/master/README.md
-conventional-github-releaser -p $preset &&
+conventional-github-releaser -p $preset
 # publish new version on npm
 npm publish
