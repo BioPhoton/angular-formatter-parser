@@ -88,4 +88,4 @@ git push --follow-tags
 # source: https://github.com/conventional-changelog/conventional-github-releaser/blob/master/README.md
 conventional-github-releaser -p $preset
 # publish new version on npm
-npm publish
+# npm publish
