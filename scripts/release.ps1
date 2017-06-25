@@ -50,7 +50,9 @@ echo $bump
 # If you run npm version in a git repo, it will also create a version commit and tag.
 # This behavior is disabled by --no-git-tag-version
 # the var $bump specifies the segment of the version code to bump
+cd .\src
 npm --no-git-tag-version version $bump
+cd ..
 # conventional-changelog creates a chagnelog markdown from commits
 # -i Read the CHANGELOG from this file
 # CHANGELOG.md it the name of the file to read from
