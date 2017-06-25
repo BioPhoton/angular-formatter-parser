@@ -6,7 +6,7 @@
 # and optional argument preset `angular`/ `jquery` ...
 # defaults to conventional-commits-detector
 
-
+$ErrorActionPreference = "Stop"
 
 # rebuilds and test the latest verstion of the repository (a succeeded travis build is precondition)
 
