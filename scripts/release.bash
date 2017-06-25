@@ -24,14 +24,14 @@ git pull --rebase
 npm install
 # run unit tests
 npm test
+
+# create changelog
+
 # copy the src/package.json
 # we copy it to have the initial state saved.
 # we bump the version update the changelog
 # after doing this we use the real package.json and do another version bump
 # there to have change log and version bump in separate commits
-
-# create changelog
-
 Copy-Item .\src\package.json "src\_package.json"
 # Detect what commit message convention your repository is using
 # source: https://github.com/conventional-changelog/conventional-commits-detector/blob/master/README.md
