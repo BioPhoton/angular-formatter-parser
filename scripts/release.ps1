@@ -13,9 +13,9 @@
 # checks the status of the last build of the current repository
 # --no-interactive disables the interactive mode
 # source: https://github.com/travis-ci/travis.rb/blob/master/README.md
-$status = travis status --no-interactive
-echo $status
-if ( $status -ne "passed")
+$state = travis status --no-interactive
+echo $state
+if ( $state -ne "passed")
 {
     Write-Host "Invalid travis state $state. State should be passed"  -foregroundcolor "red"
     Exit
