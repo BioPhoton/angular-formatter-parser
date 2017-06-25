@@ -70,7 +70,7 @@ conventional-changelog -i CHANGELOG.md -s -p $preset
 # add CHANGELOG.md to the commit
 git add CHANGELOG.md
 # get the content of package.json and json-parse the value
-$package = (Get-Content "package.json" -Raw) | ConvertFrom-Json
+$package = (Get-Content ".\src\package.json" -Raw) | ConvertFrom-Json
 $version = $package.version
 # commit with comment
 git commit -m"docs(CHANGELOG): $version"
@@ -88,7 +88,7 @@ Write-Host "created changelog $preset" -foregroundcolor "green"
 # -m will set a commit message with the version placed by %s
 cd .\src
 npm --no-git-tag-version version $bump
-git add .\src\package.json
+git add .\package.json
 git commit -m "chore(release): $version ($preset)"
 git tag $version
 cd ..
