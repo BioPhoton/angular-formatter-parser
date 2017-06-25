@@ -58,6 +58,7 @@
     "karma-coverage-istanbul-reporter": "^0.2.3",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-phantomjs-launcher": "^1.0.4",
     "karma-typescript": "^3.0.4",
     "karma-typescript-angular2-transform": "^1.0.0",
     "node-sass": "^4.5.2",

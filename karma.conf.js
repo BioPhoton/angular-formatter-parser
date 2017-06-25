@@ -17,6 +17,7 @@ module.exports = function (config) {
             require('karma-jasmine'),
             require('karma-typescript'),
             require('karma-chrome-launcher'),
+            require('karma-phantomjs-launcher'),
             require('karma-jasmine-html-reporter'),
             require('karma-coverage-istanbul-reporter')
         ],
@@ -86,15 +87,16 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+        // PhantomJS
         browsers: ['Chrome'],
 
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false,
+        singleRun: true,
 
         // Concurrency level
         // how many browser should be started simultaneous
-        concurrency: Infinity
+        concurrency: 1
     })
 }

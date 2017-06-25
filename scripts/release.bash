@@ -23,7 +23,7 @@ git pull --rebase
 # installs the node dependencies
 npm install
 # run unit tests
-npm test
+karma start karma.conf.js
 
 # create changelog
 
