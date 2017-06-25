@@ -57,7 +57,7 @@ describe('FormatterParserService', () => {
     it('should throw if we request a not existing function', inject([FormatterParserService], (service: FormatterParserService) => {
         const customFormatterFunction = service.getFormatParseFunction('customFormatterFunction');
         expect(typeof customFormatterFunction).toBe('function');
-        expect(customFormatterFunction('').result).toBe('_');
+        expect(customFormatterFunction('').result).toBe('');
     }));
 
 });
