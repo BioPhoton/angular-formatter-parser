@@ -74,7 +74,9 @@ trash .\src\package.json
 Rename-Item -Path ".\src\_package.json" -NewName "package.json"
 # npm version $bump bumps the version specified in $bump and write the new data back to package.json
 # -m will set a commit message with the version placed by %s
-npm version $bump -m "chore(release): %s" &&
+cd .\src
+npm version $bump -m "chore(release): %s"
+cd ..
 # pushed the commit
 # --follow-tags also pushed the new tags
 # source: https://git-scm.com/docs/git-push
