@@ -15,7 +15,7 @@
 # source: https://github.com/travis-ci/travis.rb/blob/master/README.md
 $status = travis status --no-interactive
 echo $status
-if ( $status -eq "passed")
+if ( $status -ne "passed")
 {
     Write-Host "Invalid travis state. State should be passed"
     Exit
