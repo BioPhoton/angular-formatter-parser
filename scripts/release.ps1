@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # npm publish with goodies
 # prerequisites:
 # `npm install -g trash conventional-recommended-bump conventional-changelog conventional-github-releaser conventional-commits-detector json`
@@ -16,7 +14,8 @@
 # --no-interactive disables the interactive mode
 # source: https://github.com/travis-ci/travis.rb/blob/master/README.md
 travis status --no-interactive
-# deletes the node_modules folder
+
+# deletes the node_modules folder (move them into trash, more reversable)
 trash node_modules
 # pulls the latest version
 git pull --rebase
@@ -59,3 +58,10 @@ npm --no-git-tag-version version $bump
 # -p Name of the preset you want to use. In this case it is angular that is stored in $preset
 conventional-changelog -i CHANGELOG.md -s -p $preset
 # add CHANGELOG.md to the commit
+git add CHANGELOG.md
+# get the content of package.json and json-parse the value
+$package = (Get-Content "package.json" -Raw) | ConvertFrom-Json
+$version = $package.version
+# commit with comment
+git commit -m"docs(CHANGELOG): $version"
+
