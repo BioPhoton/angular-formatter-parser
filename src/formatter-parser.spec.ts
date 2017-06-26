@@ -1,5 +1,5 @@
 import { inject, TestBed } from '@angular/core/testing';
-import { IFormatterParserResult } from '../dist/struct/formatter-parser-result';
+import { IFormatterParserResult } from './struct/formatter-parser-result';
 import { FormatterParser } from './formatterParser';
 
 describe('FormatterParser', () => {

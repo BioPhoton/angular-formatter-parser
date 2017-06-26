@@ -23,9 +23,9 @@ export class FormatterParserService {
 
         if (!(typeof formatParseFunction === 'function')) {
             throw new Error(`Formatter or Parser with name ${functionName} 
-                             is not provided as a function via FormatterParser 
-                             service or FORMATTER_PARSER InjectionToken. 
-                             Did you forgot to provide them?`);
+                          is not provided as a function via FormatterParser 
+                          service or FORMATTER_PARSER InjectionToken. 
+                          Did you forgot to provide them?`);
         }
 
 
