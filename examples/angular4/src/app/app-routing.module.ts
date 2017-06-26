@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BasicUsageComponent } from './page/basic-usage/basic-usage.component';
+import { BuiltInFunctionsComponent } from './pages/built-in-functions/built-in-functions.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'basic-usage',
     component: BasicUsageComponent
+  },
+  {
+    path: 'built-in-functions',
+    component: BuiltInFunctionsComponent
   },
   {
     path: '**',
