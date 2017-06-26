@@ -42,7 +42,7 @@ export class BuiltInFunctionsComponent implements OnInit {
     formatterParser: [
       {
         name: 'confirmToMask',
-        params: [[/[a]/, '*', /[b]/], '*']
+        params: [[/[a]/, '*', /[b]/], '#']
       }
     ]
   };
@@ -50,8 +50,8 @@ export class BuiltInFunctionsComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.basicFormGroup = this.fb.group(
       {
-        toUpperCased: [],
-        toLowerCased: [],
+        toUpperCase: [],
+        toLowerCase: [],
         toCapitalized: [],
         replaceString: [],
         conformToMask: []

@@ -10,7 +10,7 @@ import { FormatterParserModule } from 'angular-formatter-parser';
 import { BasicUsageComponent } from './page/basic-usage/basic-usage.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
-import { BuiltInFunctionsComponent } from './pages/built-in-functions/built-in-functions.component';
+import { BuiltInFunctionsComponent } from './page/built-in-functions/built-in-functions.component';
 
 @NgModule({
   declarations: [

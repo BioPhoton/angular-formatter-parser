@@ -19,22 +19,15 @@
       </div>
 
       <div class="form-group">
-        <label>toUpperCase</label>
-        <input type="text" class="form-control"
-               [formControlName]="'toUpperCase'" [formatterParser]="fPToUpperCaseConfig">
-      </div>
-
-      <div class="form-group">
         <label>toCapitalized</label>
         <input type="text" class="form-control"
                [formControlName]="'toCapitalized'" [formatterParser]="fPToCapitalizedConfig">
       </div>
 
-
       <div class="form-group">
         <label>stringReplace</label>
         <input type="text" class="form-control"
-               [formControlName]="'stringReplace'" [formatterParser]="fPReplaceStringConfig">
+               [formControlName]="'replaceString'" [formatterParser]="fPReplaceStringConfig">
       </div>
 
       <div class="form-group">
@@ -42,7 +35,6 @@
         <input type="text" class="form-control"
                [formControlName]="'conformToMask'" [formatterParser]="fPConformToMaskConfig">
       </div>
-
 
     </form>
 
