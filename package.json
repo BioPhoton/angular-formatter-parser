@@ -9,7 +9,7 @@
     "docs:serve": "npm run docs:build -- -s",
     "docs:watch": "npm run docs:build -- -s -w",
     "lint": "tslint --type-check --project tsconfig.json src/**/*.ts",
-    "test": "tsc && karma start",
+    "test": "karma start karma.conf.js",
     "recommended-bump": "conventional-recommended-bump -p angular",
     "changelog": "conventional-changelog --pkg ./src/package.json --config ./changelog/changelog.config.js -p angular -i CHANGELOG.md -s -r 0",
     "github-release": "conventional-github-releaser -p angular -r 0",
@@ -76,9 +76,5 @@
   },
   "engines": {
     "node": ">=6.0.0"
-  },
-  "dependencies": {
-    "text-mask-addons": "^3.6.0",
-    "text-mask-core": "^5.0.1"
   }
 }
