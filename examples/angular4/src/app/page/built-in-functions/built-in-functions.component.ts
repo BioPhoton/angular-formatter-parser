@@ -41,7 +41,7 @@ export class BuiltInFunctionsComponent implements OnInit {
   fPConformToMaskConfig: IFormatterParserConfig = {
     formatterParser: [
       {
-        name: 'confirmToMask',
+        name: 'conformToMask',
         params: [[/[a]/, '*', /[b]/], '#']
       }
     ]
