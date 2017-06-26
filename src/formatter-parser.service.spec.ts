@@ -54,6 +54,11 @@ describe('FormatterParserService', () => {
         }
     }));
 
+    it('toUppercase built in function should work', inject([FormatterParserService], (service: FormatterParserService) => {
+            const func: IFormatterParserFn = service.getFormatParseFunction('toUpperCase');
+            expect(func('abc').result).toBe('ABC');
+    }));
+
     it('should throw if we request a not existing function', inject([FormatterParserService], (service: FormatterParserService) => {
         const customFormatterFunction = service.getFormatParseFunction('customFormatterFunction');
         expect(typeof customFormatterFunction).toBe('function');
