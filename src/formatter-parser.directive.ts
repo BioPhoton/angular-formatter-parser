@@ -111,7 +111,7 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
             // If there is a reactive FormControl present update its model
             if (this.onModelChange) {
                 // @TODO consider other way to call patchValue
-                this.formControl.patchValue(modelValue);
+                this.formControl.setValue(modelValue, {emitViewToModelChange: true});
             }
         }
 

@@ -106,6 +106,8 @@ export class FormatterParser {
 
         return (rawValue: any) => {
 
+            rawValue = rawValue || '';
+
             if (typeof mask === 'function') {
                 mask = mask(rawValue) as (string | RegExp)[];
             }
@@ -330,8 +332,6 @@ export class FormatterParser {
                 meta: {someCharsRejected}
             };
 
-        }
+        };
     }
-
 }
-
