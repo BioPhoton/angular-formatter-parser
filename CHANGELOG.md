@@ -1,4 +1,15 @@
 <a name="0.1.10"></a>
+## [0.1.10](https://github.com/BioPhoton/angular-formatter-parser/compare/0.1.13...v0.1.10) (2017-06-26)
+
+
+### Bug Fixes
+
+* **added conformToMask:** added new built in transform conformToMask ([5dba567](https://github.com/BioPhoton/angular-formatter-parser/commit/5dba567))
+* **adopt conformToMask:** adopt confirmToMask ([d1747b6](https://github.com/BioPhoton/angular-formatter-parser/commit/d1747b6))
+
+
+
+<a name="0.1.10"></a>
 ## [0.1.10](https://github.com/BioPhoton/angular-formatter-parser/compare/0.1.12...v0.1.10) (2017-06-25)
 
 
