@@ -1,91 +1,83 @@
-import { FormatterParserDirective } from './formatter-parser.directive';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
-import { IFormatterParserConfig } from './struct/formatter-parser-config';
-import { FormatterParserService } from './formatter-parser.service';
-import { By } from '@angular/platform-browser';
-import { FormControl, FormGroup } from '@angular/forms';
-import { FormatterParserModule } from './index';
-
+import {Component, DebugElement} from '@angular/core'
+import {ComponentFixture, TestBed} from '@angular/core/testing'
+import {FormControl, FormGroup} from '@angular/forms'
+import {By} from '@angular/platform-browser'
+import {FormatterParserDirective} from './formatter-parser.directive'
+import {FormatterParserService} from './formatter-parser.service'
+import {FormatterParserModule} from './index'
+import {IFormatterParserConfig} from './struct/formatter-parser-config'
 
 @Component({
-    template: `
-        <form [formGroup]="fg">
-            <input type="text" formControlName="test" [formatterParser]="formatterParserConfig">
-        </form>
-    `,
+  template: `
+    <form [formGroup]="fg">
+      <input type="text" value="" [formControlName]="'test'"
+        [formatterParser]="formatterParserConfig">
+    </form>
+  `,
 })
 class TestComponent {
-
-    fg: FormGroup = new FormGroup({'test': new FormControl('')});
-
-    formatterParserConfig: IFormatterParserConfig = {
-        formatterParser: [
-            {name: 'toUpperCase'}
-        ]
-
-    };
-
+  fg: FormGroup = new FormGroup({'test': new FormControl('')});
+  formatterParserConfig: IFormatterParserConfig = {
+    formatterParser: [
+      {name: 'toUpperCase'}
+    ]
+  };
 }
 
 describe('FormatterParserDirective', () => {
 
-    let component: TestComponent;
-    let fixture: ComponentFixture<TestComponent>;
-    let el: DebugElement;
-    let inputElement;
+  let component: TestComponent;
+  let fixture: ComponentFixture<TestComponent>;
+  let el: DebugElement;
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [
-                FormatterParserModule
-            ],
-            declarations: [
-                TestComponent
-            ],
-            providers: [
-                FormatterParserService
-            ]
-        });
-        fixture = TestBed.createComponent(TestComponent);
-        component = fixture.componentInstance;
-        el = fixture.debugElement;
+  const setInputValue = (inputElem: DebugElement, value) => {
+    console.log('inputElem.nativeElement', inputElem.attributes);
+    inputElem.attributes.value = value;
+    inputElem.triggerEventHandler('input', {})
+    fixture.detectChanges();
+  }
 
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        FormatterParserModule.forRoot()
+      ],
+      declarations: [
+        TestComponent
+      ],
+      providers: [
+        FormatterParserService
+      ]
     });
+    fixture = TestBed.createComponent(TestComponent);
+    component = fixture.componentInstance;
+    el = fixture.debugElement;
+  });
 
-    xit('should transform value with built in transform function', () => {
-        // const inputEl = el.query(By.directive(FormatterParserDirective)).nativeElement;
+  it('should transform value with built in transform function', () => {
+    const inputElement = el.query(By.directive(FormatterParserDirective));
+    fixture.detectChanges();
+    expect(inputElement.attributes.value).toBe('');
+    // setInputValue(inputElement, 'ABCdef');
 
-        inputElement = fixture.debugElement.query(By.css('input'));
-        inputElement.triggerEventHandler('mouseover', null);
-        fixture.detectChanges();
-        //console.log(inputElement.nativeElement.value);
+    console.log('inputElement:', inputElement);
+    // expect(inputElement.attributes.value).toBe('ABCDEF');
+  });
 
-        expect(inputElement.nativeElement.value).toBe('ABC');
-        // setInputValue(inputElem, 'ABCdef');
-        // expect(inputElem.value).toBe('ABCDEF');
-    });
+  /*xit('should transform value with built in transform function and params', () => {
+    component.formatterParserConfig = {
+      formatterParser: [
+        {
+          name: 'replaceString',
+          params: [/[a]/, 'b']
+        }
+      ]
+    };
+    const inputElem = el.query(By.directive(FormatterParserDirective)).nativeElement;
 
-    xit('should transform value with built in transform function and params', () => {
-        component.formatterParserConfig = {
-            formatterParser: [
-                {
-                    name: 'replaceString',
-                    params: [/[a]/, 'b']
-                }
-            ]
-        };
-        const inputElem = el.query(By.directive(FormatterParserDirective)).nativeElement;
-
-        setInputValue(inputElem, 'abc');
-        expect(inputElem.value).toBe('abc');
-    });
-
-
-    function setInputValue(inputElem, value) {
-        inputElem.value = value;
-        inputElem.dispatchEvent(new Event('input'));
-    }
+    setInputValue(inputElem, 'abc');
+    expect(inputElem.attributes.value).toBe('bbc');
+  });*/
 
 });
 

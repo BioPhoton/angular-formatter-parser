@@ -1,8 +1,8 @@
-import { inject, TestBed } from '@angular/core/testing';
-import { FormatterParserService } from './formatter-parser.service';
-import { IFormatterParserFn } from './struct/formatter-parser-function';
-import { FORMATTER_PARSER } from './formatter-parser.injectionToken';
-import { IFormatterParserResult } from './struct/formatter-parser-result';
+import {inject, TestBed} from '@angular/core/testing'
+import {FORMATTER_PARSER} from './formatter-parser.injectionToken'
+import {FormatterParserService} from './formatter-parser.service'
+import {IFormatterParserFn} from './struct/formatter-parser-function'
+import {IFormatterParserResult} from './struct/formatter-parser-result'
 
 
 function customFormatterFunction(v) {
@@ -19,7 +19,11 @@ describe('FormatterParserService', () => {
     TestBed.configureTestingModule({
       providers: [
         FormatterParserService,
-        {provide: FORMATTER_PARSER, useValue: customFormatterFunction, multi: true}
+        {
+          provide: FORMATTER_PARSER,
+          useValue: customFormatterFunction,
+          multi: true
+        }
       ],
     });
   });
@@ -59,7 +63,7 @@ describe('FormatterParserService', () => {
     expect(func('abc').result).toBe('ABC');
   }));
 
-  it('should throw if we request a not existing function', inject([FormatterParserService], (service: FormatterParserService) => {
+  it('should return the function if we request a custom existing function', inject([FormatterParserService], (service: FormatterParserService) => {
     const customFormatterFunction = service.getFormatParseFunction('customFormatterFunction');
     expect(typeof customFormatterFunction).toBe('function');
     expect(customFormatterFunction('').result).toBe('_');
