@@ -2,12 +2,13 @@
 // https://karma-runner.github.io/0.13/config/configuration-file.html
 
 module.exports = function (config) {
-  config.set({
+  var cfg = {
     basePath: '',
     frameworks: ['jasmine', '@angular/cli'],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
+      require('karma-phantomjs-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular/cli/plugins/karma')
@@ -28,6 +29,17 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
+    customLaunchers: {
+      Gitlab_CI: {
+        base: 'PhantomJS'
+      }
+    },
     singleRun: false
-  });
+  };
+
+  if (process.env.GITLAB) {
+    cfg.browsers = ['Gitlab_CI'];
+  }
+
+  config.set(cfg);
 };
