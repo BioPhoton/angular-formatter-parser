@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { IFormatterParserConfig } from '../../../../../../dist/struct/formatter-parser-config';
+import {Component, OnInit} from '@angular/core'
+import {FormBuilder, FormGroup} from '@angular/forms'
+import {IFormatterParserConfig} from 'angular-formatter-parser/struct/formatter-parser-config'
+import {IConformToMaskConfig} from 'angular-formatter-parser/struct/transform-functions/conform-to-mask-config'
 
 @Component({
   selector: 'app-built-in-functions',
@@ -25,7 +26,7 @@ export class BuiltInFunctionsComponent implements OnInit {
 
   fPToCapitalizedConfig: IFormatterParserConfig = {
     formatterParser: [
-      {name: 'toLowerCase'}
+      {name: 'toCapitalized'}
     ]
   };
 
@@ -38,11 +39,23 @@ export class BuiltInFunctionsComponent implements OnInit {
     ]
   };
 
+  cTMC: IConformToMaskConfig = {
+    guide: false,
+    // placeholderChar: '_',
+    keepCharPositions: true,
+    // placeholder: ' ',
+    // previousConformedValue: '',
+    currentCaretPosition: 0
+  };
+
   fPConformToMaskConfig: IFormatterParserConfig = {
     formatterParser: [
       {
         name: 'conformToMask',
-        params: [[/[a]/, '*', /[b]/], '#']
+        params: [
+          [/[a-zA-Z]/, '*', /[a-zA-Z]/],
+          this.cTMC
+        ]
       }
     ]
   };
