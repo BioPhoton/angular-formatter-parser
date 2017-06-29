@@ -4,11 +4,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { FormatterParserDirective } from './formatter-parser.directive';
 import { FormatterParserService } from './formatter-parser.service';
-import { FormatterParser } from './formatterParser';
+import { FormatterParser } from './formatter-parser';
 
 export * from './formatter-parser.directive';
 export * from './formatter-parser.service';
-export * from './formatterParser';
+export * from './formatter-parser';
 export * from './formatter-parser.injectionToken';
 
 @NgModule({
