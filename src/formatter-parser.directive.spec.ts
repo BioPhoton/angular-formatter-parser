@@ -31,7 +31,6 @@ describe('FormatterParserDirective', () => {
   let el: DebugElement;
 
   const setInputValue = (inputElem: DebugElement, value) => {
-    console.log('inputElem.nativeElement', inputElem.attributes);
     inputElem.attributes.value = value;
     inputElem.triggerEventHandler('input', {})
     fixture.detectChanges();
@@ -60,7 +59,6 @@ describe('FormatterParserDirective', () => {
     expect(inputElement.attributes.value).toBe('');
     // setInputValue(inputElement, 'ABCdef');
 
-    console.log('inputElement:', inputElement);
     // expect(inputElement.attributes.value).toBe('ABCDEF');
   });
 
