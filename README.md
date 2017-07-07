@@ -6,6 +6,7 @@ Easy to implement and elegant to use it also provides the possibility to registe
 
 ![License](https://img.shields.io/npm/l/angular-formatter-parser.svg)
 [![NPM Version](https://img.shields.io/npm/v/angular-formatter-parser.svg)](https://www.npmjs.com/package/angular-formatter-parser)
+[![Build Status](https://travis-ci.org/BioPhoton/angular-formatter-parser.svg?branch=master)](https://travis-ci.org/BioPhoton/angular-formatter-parser)
 
 ## Demo
 
@@ -17,7 +18,7 @@ Easy to implement and elegant to use it also provides the possibility to registe
 
 ## Basic Usage:
 
-### Implement Library
+#### Implement Library
 
 ``` bash
 $ npm install angular-formatter-parser --save
@@ -41,7 +42,7 @@ export class AppModule { }
 ```
 
 
-### Create formatterParser config object
+#### Create formatterParser config object
 
 ``` typescript
 // app.component.ts
@@ -68,7 +69,7 @@ export class BasicUsageComponent {
 ```
 
 
-### Use directive with config object
+#### Use directive with config object
 
 ``` html
 // app.component.html
@@ -79,7 +80,7 @@ export class BasicUsageComponent {
 
 ## Usage with Reactive Forms
 
-### Create FormGroup
+#### Create FormGroup
 
 ``` typescript
 // app.component.ts
@@ -101,7 +102,7 @@ export class BasicUsageComponent {
 ```
 
 
-### Set formGroup and formControlName
+#### Set formGroup and formControlName
 
 ``` html
 // app.component.html
@@ -112,7 +113,7 @@ export class BasicUsageComponent {
 ```
 
 
-### Specify the target (transform the value of the view or the model)
+#### Specify the target (transform the value of the view or the model)
 
 ``` typescript
 // app.component.ts
@@ -131,7 +132,7 @@ export class BasicUsageComponent {
 ```
 
 
-### Use multiple transform functions
+#### Use multiple transform functions
 
 ``` typescript
 // app.component.ts
@@ -147,7 +148,7 @@ export class BasicUsageComponent {
 
 ## Use custom transform function
 
-### Create custom function
+#### Create custom function
 
 ``` typescript
 //add-questionmark-transform.ts
@@ -166,7 +167,7 @@ export function addQuestionmark(value:any): IFormatterParserResult {
 
 ```
 
-### Provide the function over the FORMATTER_PARSER token
+#### Provide the function over the FORMATTER_PARSER token
 
 ``` typescript
 // app.module.ts
@@ -189,7 +190,7 @@ export class AppModule {
 
 ```
 
-### Use custom transform function in config object
+#### Use custom transform function in config object
 
 ``` typescript
 // app.component.ts
@@ -206,10 +207,11 @@ export class BasicUsageComponent {
 
 ```
 
+# Built in transform functions
 
 
 # What it is
-The angular FormatterParser library in a port of the Angular 1.x `ngModel.$formatter` and `ngModel.§parser` implementation.
+The angular FormatterParser library in a port of the Angular 1.x `ngModel.$formatter` and `ngModel.$parser` implementation.
 
 It is implemented as an configurable directive which mimics the angular reactive-forms validation.
 
