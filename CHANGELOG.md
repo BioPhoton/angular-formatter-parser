@@ -1,3 +1,13 @@
+<a name="0.0.0"></a>
+# [0.0.0](https://github.com/BioPhoton/angular-formatter-parser/compare/0.1.14...v0.0.0) (2017-07-07)
+
+
+### Bug Fixes
+
+* **default formatter:** implement built in masking function ([c3313b4](https://github.com/BioPhoton/angular-formatter-parser/commit/c3313b4))
+
+
+
 <a name="0.1.10"></a>
 ## [0.1.10](https://github.com/BioPhoton/angular-formatter-parser/compare/0.1.13...v0.1.10) (2017-06-26)
 
