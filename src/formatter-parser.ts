@@ -8,6 +8,8 @@ export class FormatterParser {
 
   static toUpperCase: IFormatterParserFn = (value: any): IFormatterParserResult => {
     let transformedValue = value;
+
+    /* istanbul ignore else */
     if (typeof value === 'string' || value instanceof String) {
       transformedValue = value.toUpperCase();
     }
@@ -21,6 +23,7 @@ export class FormatterParser {
 
   static toLowerCase: IFormatterParserFn = (value: any): IFormatterParserResult => {
     let transformedValue = value;
+    /* istanbul ignore else */
     if (typeof transformedValue === 'string' || transformedValue instanceof String) {
       transformedValue = transformedValue.toLowerCase();
     }
@@ -33,9 +36,8 @@ export class FormatterParser {
   }
 
   static toCapitalized: IFormatterParserFn = (value: any): IFormatterParserResult => {
-
     let transformedValue = value;
-
+    /* istanbul ignore else */
     if (typeof value === 'string' || value instanceof String) {
       transformedValue = transformedValue
         .toLowerCase()
@@ -55,9 +57,8 @@ export class FormatterParser {
   static replaceString(searchValue: RegExp, replaceValue: string): IFormatterParserFn {
 
     return (value: any) => {
-
       let transformedValue = value;
-
+      /* istanbul ignore else */
       if (typeof transformedValue === 'string' || transformedValue instanceof String) {
         transformedValue = transformedValue.replace(searchValue, replaceValue);
       }
@@ -83,6 +84,7 @@ export class FormatterParser {
         previous: value
       };
 
+      /* istanbul ignore else */
       if (mask && config) {
         value = (typeof value === 'string' || value instanceof String) ? value : '';
 

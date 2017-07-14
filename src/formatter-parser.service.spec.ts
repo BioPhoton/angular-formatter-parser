@@ -37,9 +37,9 @@ describe('FormatterParserService', () => {
     expect(() => {
       service.getFormatParseFunction(functionName);
     }).toThrow(new Error(`Formatter or Parser with name ${functionName} 
-                          is not provided as a function via FormatterParser 
-                          service or FORMATTER_PARSER InjectionToken. 
-                          Did you forgot to provide them?`));
+                            is not provided as a function via FormatterParser 
+                            service or FORMATTER_PARSER InjectionToken. 
+                            Did you forgot to provide them?`));
   }));
 
   it('should be able to get the built in functions', inject([FormatterParserService], (service: FormatterParserService) => {
@@ -50,17 +50,9 @@ describe('FormatterParserService', () => {
     }
   }));
 
-  it('should be able to get the built in functions', inject([FormatterParserService], (service: FormatterParserService) => {
-    const buildInFuncNames: string[] = ['toUpperCase', 'toLowerCase', 'replaceString', 'toCapitalized'];
-    for (let i = 0; i < buildInFuncNames.length; i++) {
-      const func: IFormatterParserFn = service.getFormatParseFunction(buildInFuncNames[i]);
-      expect(typeof func).toBe('function');
-    }
-  }));
-
-  it('toUppercase built in function should work', inject([FormatterParserService], (service: FormatterParserService) => {
-    const func: IFormatterParserFn = service.getFormatParseFunction('toUpperCase');
-    expect(func('abc').result).toBe('ABC');
+  it('replaceString built in function should work', inject([FormatterParserService], (service: FormatterParserService) => {
+    const func: IFormatterParserFn = service.getFormatParseFunction('replaceString', [/[b]/, '']);
+    expect(func('abc').result).toBe('ac');
   }));
 
   it('should return the function if we request a custom existing function', inject([FormatterParserService], (service: FormatterParserService) => {
