@@ -41,7 +41,6 @@ module.exports = function (config) {
   if (process.env.CI && process.env.TRAVIS) {
     cfg.browsers = ['TRAVIS_CI'];
     cfg.singleRun = true;
-    console.log('process.env.CI, process.env.TRAVIS: ', process.env.CI, process.env.TRAVIS);
   }
 
   config.set(cfg);
