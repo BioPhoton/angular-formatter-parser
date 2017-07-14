@@ -14,7 +14,6 @@ export class FormatterParserService {
     if (functionName in FormatterParser) {
       formatParseFunction = FormatterParser[functionName];
     } else if (this.FORMATTER_PARSER) {
-      console.log('customFormatterFunction');
       formatParseFunction = this.FORMATTER_PARSER.find(formParsFunc => {
         return functionName === formParsFunc.name;
       });
