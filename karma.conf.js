@@ -28,17 +28,19 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
     customLaunchers: {
-      Gitlab_CI: {
+      TRAVIS_CI: {
         base: 'PhantomJS'
       }
     },
-    singleRun: true
+    singleRun: false
   };
 
-  if (process.env.GITLAB) {
-    cfg.browsers = ['Gitlab_CI'];
+  console.log('XXXXXXXXXXXXXXX: ', process.env);
+  if (process.env.TRAVIS) {
+    cfg.browsers = ['TRAVIS_CI'];
+    cfg.singleRun = true
   }
 
   config.set(cfg);
