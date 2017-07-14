@@ -48,6 +48,9 @@
   "test": {
     "karma": {
       "config": "./karma.conf.js"
+    },
+    "codeCoverage": {
+      "exclude": ["./src/static-vendors/**/*"]
     }
   },
   "defaults": {
