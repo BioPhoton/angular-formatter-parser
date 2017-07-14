@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "gulp build",
     "test": "ng test",
-    "coverage": "ng test --watch=false --code-coverage",
+    "coverage": "ng test --progress=false --watch=false --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:watch": "gulp",
