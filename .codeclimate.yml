@@ -1,3 +1,2 @@
-## other configuration excluded from example...
 exclude_paths:
 - "examples/**/*"
