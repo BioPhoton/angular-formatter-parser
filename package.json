@@ -61,6 +61,7 @@
     "@angular/language-service": "^4.0.0",
     "@types/jasmine": "2.5.45",
     "@types/node": "~6.0.60",
+    "codecov.io": "^0.1.6",
     "codelyzer": "~3.0.1",
     "coveralls": "^2.13.1",
     "intl": "^1.2.5",

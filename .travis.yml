@@ -16,4 +16,6 @@ script:
   - npm run coverage
 
 after_success:
-- cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+- cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+- cat ./coverage/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js
+- rm -rf ./coverage
