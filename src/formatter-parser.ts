@@ -86,6 +86,7 @@ export class FormatterParser {
 
       /* istanbul ignore else */
       if (mask && config) {
+        /* istanbul ignore conditional */
         value = (typeof value === 'string' || value instanceof String) ? value : '';
 
         const subResult = realConformToMask(value, mask, config);
