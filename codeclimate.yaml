@@ -3,10 +3,7 @@ engines:
     enabled: true
     config:
       languages:
-      - ruby
       - javascript
-      - python
-      - php
   eslint:
     enabled: true
   fixme:
@@ -14,27 +11,20 @@ engines:
 ratings:
   paths:
   - "**.inc"
+  - "**.ts"
   - "**.js"
-  - "**.jsx"
-  - "**.module"
-  - "**.php"
-  - "**.py"
-  - "**.rb"
 exclude_paths: [
-  'examples/**/*'
+  "examples/**/*",
+  "./examples/**/*"
 ]
 
 parserOptions:
   sourceType: module
-  ecmaFeatures:
-    jsx: true
 
 env:
   amd: true
   browser: true
   es6: true
-  jquery: true
-  node: true
 
 # http://eslint.org/docs/rules/
 rules:
