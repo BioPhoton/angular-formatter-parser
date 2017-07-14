@@ -10,12 +10,14 @@ engines:
     enabled: true
 ratings:
   paths:
-  - "**.inc"
+  - "**.css"
   - "**.ts"
   - "**.js"
 exclude_paths: [
   "examples/**/*",
-  "./examples/**/*"
+  "./examples/**/*",
+  "examples/",
+  "./examples/"
 ]
 
 parserOptions:
