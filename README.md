@@ -27,7 +27,7 @@ $ npm install angular-formatter-parser --save
 ``` typescript
 // app.module.ts
 ...
-// IMPORT YOUR LBRARY
+// IMPORT YOUR LIBRARY
 import { FormatterParserModule } from 'angular-formatter-parser';
 
 @NgModule({
