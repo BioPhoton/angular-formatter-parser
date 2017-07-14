@@ -85,13 +85,10 @@ export class FormatterParser {
 
       if (mask && config) {
         value = (typeof value === 'string' || value instanceof String) ? value : '';
-        console.log('my result', mask, config, realConformToMask(value, mask, config))
 
         const subResult = realConformToMask(value, mask, config);
         result.result = subResult.conformedValue;
         result.meta = subResult.meta;
-
-        console.log('my result', result)
       }
 
       return result;
