@@ -7,6 +7,7 @@ Easy to implement and elegant to use it also provides the possibility to registe
 ![License](https://img.shields.io/npm/l/angular-formatter-parser.svg)
 [![NPM Version](https://img.shields.io/npm/v/angular-formatter-parser.svg)](https://www.npmjs.com/package/angular-formatter-parser)
 [![Build Status](https://travis-ci.org/BioPhoton/angular-formatter-parser.svg?branch=master)](https://travis-ci.org/BioPhoton/angular-formatter-parser)
+[![Coverage Status](https://coveralls.io/repos/github/BioPhoton/angular-formatter-parser/badge.svg?branch=master)](https://coveralls.io/github/BioPhoton/angular-formatter-parser?branch=master)
 
 ## Demo
 
