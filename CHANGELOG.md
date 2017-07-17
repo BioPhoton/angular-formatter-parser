@@ -1,4 +1,20 @@
 <a name="0.0.0"></a>
+# [0.0.0](https://github.com/BioPhoton/angular-formatter-parser/compare/0.1.15...v0.0.0) (2017-07-17)
+
+
+### Bug Fixes
+
+* **built in transforms:** moved conformToMask to vendors ([412fde3](https://github.com/BioPhoton/angular-formatter-parser/commit/412fde3))
+
+
+### Features
+
+* **cursor position:** implemented exchangeable service for cursor focus handling ([eec3300](https://github.com/BioPhoton/angular-formatter-parser/commit/eec3300))
+* **cursor position:** implemented exchangeable service for cursor focus handling ([a4d7871](https://github.com/BioPhoton/angular-formatter-parser/commit/a4d7871))
+
+
+
+<a name="0.0.0"></a>
 # [0.0.0](https://github.com/BioPhoton/angular-formatter-parser/compare/0.1.14...v0.0.0) (2017-07-07)
 
 
