@@ -48,9 +48,7 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
     private onModelChange: Function;
 
     constructor(private _elementRef: ElementRef,
-                private fps: FormatterParserService,
-                // BIG THX to https://github.com/SanderElias for this hint
-                @Optional() @Host() @SkipSelf() private fcd: ControlContainer) {
+                private fps: FormatterParserService) {
 
     }
 
@@ -64,10 +62,8 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
 
 
     ngOnInit(): void {
-        this.formControl = (<any>this.fcd).form.controls[this.formControlName];
         this.inputElement = this.getInputElementRef();
         this.updateFormatterAndParser();
-
     }
 
     // Parser: View to Model
@@ -76,6 +72,7 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
         const rawValue: any = this.inputElement.value;
 
         // If there is a reactive FormControl present trigger onTouch
+        /* istanbul ignore else */
         if (this.onTouch) {
             this.onTouch();
         }
@@ -89,6 +86,7 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
             .reduce((state: any, transform: IFormatterParserFn) => transform(state).result, rawValue || null);
 
         // If there is a reactive formControl present update its model
+        /* istanbul ignore else */
         if (this.onModelChange) {
             this.onModelChange(modelValue);
         }
@@ -109,9 +107,9 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
         // prevent cyclic function calls
         if (rawValue !== modelValue) {
             // If there is a reactive FormControl present update its model
+            /* istanbul ignore else */
             if (this.onModelChange) {
-                // @TODO consider other way to call patchValue
-                this.formControl.setValue(modelValue, {emitViewToModelChange: true});
+              this.onModelChange(modelValue);
             }
         }
 
@@ -124,10 +122,12 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
         this.formatterParserView = [];
         this.formatterParserModel = [];
 
+        /* istanbul ignore else */
         if (!this.config) {
             return;
         }
 
+        /* istanbul ignore else */
         if ('formatterParser' in this.config) {
             // setup formatterParser functions for view and model values
             this.config.formatterParser
@@ -136,10 +136,11 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
                     const fPF: IFormatterParserFn = this.fps.getFormatParseFunction(formatterConfig.name, formatterConfig.params);
                     const t = (formatterConfig.target === undefined) ? targetBoth : formatterConfig.target;
 
+                    // Formatter: Model to View
                     if (t === 1 || t === 2) {
                         this.formatterParserModel.push(fPF);
                     }
-
+                    // Parser: View to Model
                     if ((t === 0 || t === 2)) {
                         this.formatterParserView.push(fPF);
                     }
@@ -156,7 +157,7 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
             // `textMask` directive is used directly on an input element
             input = this._elementRef.nativeElement;
         } else {
-            // `textMask` directive is used on an abstracted input element, `ion-input`, `md-input`, etc
+            // `formatterParser` directive is used on an abstracted input element, `ion-input`, `md-input`, etc
             input = this._elementRef.nativeElement.getElementsByTagName('INPUT')[0];
         }
 
