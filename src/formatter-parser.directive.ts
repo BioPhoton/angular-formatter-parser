@@ -2,17 +2,15 @@ import {
     Directive,
     ElementRef,
     forwardRef,
-    Host,
     HostListener,
     Input,
     OnInit,
-    Optional,
-    SkipSelf
 } from '@angular/core';
-import { ControlContainer, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormatterParserService } from './formatter-parser.service';
 import { IFormatterParserFn } from './struct/formatter-parser-function';
 import { IFormatterParserConfig } from './struct/formatter-parser-config';
+import {InputContextService} from './input-context.service'
 
 const CONTROL_VALUE_ACCESSOR = {
     name: 'formatterParserValueAccessor',
@@ -29,8 +27,8 @@ const CONTROL_VALUE_ACCESSOR = {
 })
 export class FormatterParserDirective implements ControlValueAccessor, OnInit {
 
-    @Input('formatterParser')
-    config: IFormatterParserConfig;
+    @Input()
+    formatterParser: IFormatterParserConfig;
 
     @Input()
     formControlName: string;
@@ -48,7 +46,8 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
     private onModelChange: Function;
 
     constructor(private _elementRef: ElementRef,
-                private fps: FormatterParserService) {
+                private fps: FormatterParserService,
+    private inputContext: InputContextService) {
 
     }
 
@@ -90,6 +89,9 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
         if (this.onModelChange) {
             this.onModelChange(modelValue);
         }
+
+        // refocus cursor to propper position after input
+        this.inputContext.setSelection(this.inputElement);
     }
 
 
@@ -123,14 +125,14 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
         this.formatterParserModel = [];
 
         /* istanbul ignore else */
-        if (!this.config) {
+        if (!this.formatterParser) {
             return;
         }
 
         /* istanbul ignore else */
-        if ('formatterParser' in this.config) {
+        if ('formatterParser' in this.formatterParser) {
             // setup formatterParser functions for view and model values
-            this.config.formatterParser
+            this.formatterParser.formatterParser
                 .forEach((formatterConfig: any) => {
                     const targetBoth = 2;
                     const fPF: IFormatterParserFn = this.fps.getFormatParseFunction(formatterConfig.name, formatterConfig.params);
