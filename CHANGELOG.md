@@ -1,4 +1,14 @@
 <a name="0.0.0"></a>
+# [0.0.0](https://github.com/BioPhoton/angular-formatter-parser/compare/0.2.0...v0.0.0) (2017-07-19)
+
+
+### Bug Fixes
+
+* **module versions:** updated module version ([84c65d8](https://github.com/BioPhoton/angular-formatter-parser/commit/84c65d8))
+
+
+
+<a name="0.0.0"></a>
 # [0.0.0](https://github.com/BioPhoton/angular-formatter-parser/compare/0.1.15...v0.0.0) (2017-07-17)
 
 
