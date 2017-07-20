@@ -238,7 +238,7 @@ describe('FormatterParserDirective Errors', () => {
 
   })
 
-  it('should format model value to view value with built in transform function', () => {
+  it('should throw if not input is present', () => {
     const emptyConfigMessage = 'You can applied the "formatterParser" directive only on inputs or elements containing inputs'
 
     expect(() => {
