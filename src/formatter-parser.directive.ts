@@ -65,7 +65,7 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
     this.onModelChange = fn;
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.inputElement = this.getInputElementRef();
     this.updateFormatterAndParser();
   }
