@@ -1,5 +1,5 @@
 export interface IFormatterParserItemConfig {
-    name: string;
-    target?: number;
-    params?: any[];
+  name: string;
+  target?: number;
+  params?: any[];
 }

@@ -1,5 +1,5 @@
-import { IFormatterParserItemConfig } from './formatter-parser-item-config';
+import {IFormatterParserItemConfig} from './formatter-parser-item-config'
 export interface IFormatterParserConfig {
-    formatterParser?: IFormatterParserItemConfig[];
+  formatterParser?: IFormatterParserItemConfig[];
 }
 
