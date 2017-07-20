@@ -2,17 +2,19 @@ const defaultArray = []
 const emptyString = ''
 
 export default function adjustCaretPosition({
-  previousConformedValue = emptyString,
-  previousPlaceholder = emptyString,
-  currentCaretPosition = 0,
-  conformedValue,
-  rawValue,
-  placeholderChar,
-  placeholder,
-  indexesOfPipedChars = defaultArray,
-  caretTrapIndexes = defaultArray
-}) {
-  if (currentCaretPosition === 0) { return 0 }
+                                              previousConformedValue = emptyString,
+                                              previousPlaceholder = emptyString,
+                                              currentCaretPosition = 0,
+                                              conformedValue,
+                                              rawValue,
+                                              placeholderChar,
+                                              placeholder,
+                                              indexesOfPipedChars = defaultArray,
+                                              caretTrapIndexes = defaultArray
+                                            }) {
+  if (currentCaretPosition === 0) {
+    return 0
+  }
 
   // Store lengths for faster performance?
   const rawValueLength = rawValue.length
@@ -42,7 +44,9 @@ export default function adjustCaretPosition({
   // the current caret position.
   //
   // This works fine for most cases.
-  if (isPartialMultiCharEdit) { return currentCaretPosition }
+  if (isPartialMultiCharEdit) {
+    return currentCaretPosition
+  }
 
   // For a mask like (111), if the `previousConformedValue` is (1__) and user attempts to enter
   // `f` so the `rawValue` becomes (1f__), the new `conformedValue` would be (1__), which is the
@@ -85,18 +89,18 @@ export default function adjustCaretPosition({
     // Calculate the number of mask characters in the previous placeholder
     // from the start of the string up to the place where the caret is
     const previousLeftMaskChars = previousPlaceholder
-        .substr(0, intersection.length)
-        .split(emptyString)
-        .filter(char => char !== placeholderChar)
-  .length
+      .substr(0, intersection.length)
+      .split(emptyString)
+      .filter(char => char !== placeholderChar)
+      .length
 
     // Calculate the number of mask characters in the current placeholder
     // from the start of the string up to the place where the caret is
     const leftMaskChars = placeholder
-        .substr(0, intersection.length)
-        .split(emptyString)
-        .filter(char => char !== placeholderChar)
-  .length
+      .substr(0, intersection.length)
+      .split(emptyString)
+      .filter(char => char !== placeholderChar)
+      .length
 
     // Has the number of mask characters up to the caret changed?
     const masklengthChanged = leftMaskChars !== previousLeftMaskChars
@@ -143,9 +147,9 @@ export default function adjustCaretPosition({
     // We need to know if the placeholder contains characters that look like
     // our `targetChar`, so we don't select one of those by mistake.
     const countTargetCharInPlaceholder = placeholder
-        .substr(0, placeholder.indexOf(placeholderChar))
-        .split(emptyString)
-        .filter((char, index) => (
+      .substr(0, placeholder.indexOf(placeholderChar))
+      .split(emptyString)
+      .filter((char, index) => (
         // Check if `char` is the same as our `targetChar`, so we account for it
         char === targetChar &&
 
@@ -154,7 +158,7 @@ export default function adjustCaretPosition({
         // `countTargetCharInIntersection`
         rawValue[index] !== char
       ))
-  .length
+      .length
 
     // The number of times we need to see occurrences of the `targetChar` before we know it is the one we're looking
     // for is:

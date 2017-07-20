@@ -1,8 +1,8 @@
 export interface IConformToMaskConfig {
-    guide?: boolean;
-    previousConformedValue?: string;
-    placeholderChar?: string;
-    placeholder?: string;
-    currentCaretPosition?: number;
-    keepCharPositions?: boolean;
+  guide?: boolean;
+  previousConformedValue?: string;
+  placeholderChar?: string;
+  placeholder?: string;
+  currentCaretPosition?: number;
+  keepCharPositions?: boolean;
 }

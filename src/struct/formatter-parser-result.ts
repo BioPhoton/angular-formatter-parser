@@ -1,6 +1,6 @@
 export interface IFormatterParserResult {
-    name: string;
-    result: any;
-    previous?: any;
-    [other: string]: any;
+  name: string;
+  result: any;
+  previous?: any;
+  [other: string]: any;
 }
