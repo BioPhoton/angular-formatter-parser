@@ -3,8 +3,7 @@ import {
   ElementRef,
   forwardRef,
   HostListener,
-  Input,
-  OnInit
+  Input
 } from '@angular/core'
 import {
   ControlValueAccessor,
@@ -29,7 +28,7 @@ const CONTROL_VALUE_ACCESSOR = {
     CONTROL_VALUE_ACCESSOR
   ]
 })
-export class FormatterParserDirective implements ControlValueAccessor, OnInit {
+export class FormatterParserDirective implements ControlValueAccessor {
 
   @Input()
   formatterParser: IFormatterParserConfig;
