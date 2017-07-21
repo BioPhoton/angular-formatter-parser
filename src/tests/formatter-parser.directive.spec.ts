@@ -2,10 +2,10 @@ import {Component, DebugElement, Input} from '@angular/core'
 import {ComponentFixture, TestBed} from '@angular/core/testing'
 import {AbstractControl, FormControl, FormGroup} from '@angular/forms'
 import {By} from '@angular/platform-browser'
-import {FormatterParserDirective} from './formatter-parser.directive'
-import {FormatterParserService} from './formatter-parser.service'
-import {FormatterParserModule} from './index'
-import {IFormatterParserConfig} from './struct/formatter-parser-config'
+import {FormatterParserDirective} from '../formatter-parser.directive'
+import {FormatterParserService} from '../formatter-parser.service'
+import {FormatterParserModule} from '../index'
+import {IFormatterParserConfig} from '../struct/formatter-parser-config'
 
 @Component({
   selector: 'content-component',

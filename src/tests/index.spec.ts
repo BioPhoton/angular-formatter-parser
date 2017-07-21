@@ -1,7 +1,6 @@
 import {inject, TestBed} from '@angular/core/testing'
-import {FormatterParserService} from './formatter-parser.service'
-import {FormatterParserModule} from './index'
-
+import {FormatterParserService} from '../formatter-parser.service'
+import {FormatterParserModule} from '../index'
 
 describe('FormatterParserModule', () => {
 

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core'
-import {InputContext} from './input-context.interface'
+import {InputContext} from './struct/input-context.interface'
 import adjustCaretPosition from './static-vendors/adjustCaretPosition'
 
 @Injectable()
