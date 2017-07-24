@@ -3,7 +3,8 @@ import {
   ElementRef,
   forwardRef,
   HostListener,
-  Input
+  Input,
+  OnInit
 } from '@angular/core'
 import {
   ControlValueAccessor,
@@ -14,6 +15,8 @@ import {FormatterParserService} from './formatter-parser.service'
 import {InputContextService} from './input-context.service'
 import {IFormatterParserConfig} from './struct/formatter-parser-config'
 import {IFormatterParserFn} from './struct/formatter-parser-function'
+
+declare var Ionic: any;
 
 const CONTROL_VALUE_ACCESSOR = {
   name: 'formatterParserValueAccessor',
@@ -28,7 +31,7 @@ const CONTROL_VALUE_ACCESSOR = {
     CONTROL_VALUE_ACCESSOR
   ]
 })
-export class FormatterParserDirective implements ControlValueAccessor {
+export class FormatterParserDirective implements ControlValueAccessor, OnInit {
 
   @Input()
   formatterParser: IFormatterParserConfig;
@@ -62,6 +65,13 @@ export class FormatterParserDirective implements ControlValueAccessor {
 
   registerOnChange(fn) {
     this.onModelChange = fn;
+  }
+
+  ngOnInit(): void {
+    if (typeof Ionic === 'undefined') {
+      this.inputElement = this.getInputElementRef();
+      this.updateFormatterAndParser();
+    }
   }
 
   ngAfterViewInit(): void {
