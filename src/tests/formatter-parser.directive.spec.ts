@@ -1,11 +1,37 @@
-import {Component, DebugElement} from '@angular/core'
+import {Component, DebugElement, Input} from '@angular/core'
 import {ComponentFixture, TestBed} from '@angular/core/testing'
 import {AbstractControl, FormControl, FormGroup} from '@angular/forms'
 import {By} from '@angular/platform-browser'
-import {FormatterParserDirective} from './formatter-parser.directive'
-import {FormatterParserService} from './formatter-parser.service'
-import {FormatterParserModule} from './index'
-import {IFormatterParserConfig} from './struct/formatter-parser-config'
+import {FormatterParserDirective} from '../formatter-parser.directive'
+import {FormatterParserService} from '../formatter-parser.service'
+import {FormatterParserModule} from '../index'
+import {IFormatterParserConfig} from '../struct/formatter-parser-config'
+
+@Component({
+  selector: 'content-component',
+  template: `
+    <p>
+      This is the component that displays formatter parser in the over ng-content
+    </p>
+    <ng-content></ng-content>
+  `,
+})
+class NgContentComponent {
+}
+
+@Component({
+  selector: 'wrap-component',
+  template: `
+    <p>
+      This is the component that displays formatter parser in the over ng-content
+    </p>
+    <input type="text" value="" [formControlName]="name" id="wrapped">
+  `,
+})
+class WrapContentComponent {
+  @Input()
+  name: string;
+}
 
 @Component({
   template: `
@@ -20,9 +46,12 @@ import {IFormatterParserConfig} from './struct/formatter-parser-config'
         [formatterParser]="formatterParserConfigParams">
       <input type="text" value="" [formControlName]="'empty'" id="empty"
         [formatterParser]>
-      <div [formatterParser]="formatterParserConfigWrapped">
-        <input type="text" value="" id="wrapped" [formControlName]="'wrapped'">
-      </div>
+      <content-component>
+        <input type="text" value="" id="content" [formControlName]="'content'" [formatterParser]="formatterParserConfigContent">
+      </content-component>
+      <!--   
+      <wrap-component [name]="'wrapped'"></wrap-component>
+      -->
     </form>
   `,
 })
@@ -33,6 +62,7 @@ class TestComponent {
     'parse': new FormControl(''),
     'params': new FormControl(''),
     'empty': new FormControl(''),
+    'content': new FormControl(''),
     'wrapped': new FormControl('')
   })
   formatterParserConfigBasic: IFormatterParserConfig = {
@@ -61,6 +91,12 @@ class TestComponent {
       {name: 'toUpperCase'}
     ]
   }
+
+  formatterParserConfigContent: IFormatterParserConfig = {
+    formatterParser: [
+      {name: 'toUpperCase'}
+    ]
+  }
 }
 
 describe('FormatterParserDirective', () => {
@@ -79,6 +115,8 @@ describe('FormatterParserDirective', () => {
   let paramsInputControl: AbstractControl
   let emptyInput: DebugElement
   let emptyInputControl: AbstractControl
+  let contentInput: DebugElement
+  let contentInputControl: AbstractControl
   let wrappedInput: DebugElement
   let wrappedInputControl: AbstractControl
 
@@ -94,6 +132,8 @@ describe('FormatterParserDirective', () => {
         FormatterParserModule.forRoot()
       ],
       declarations: [
+        NgContentComponent,
+        WrapContentComponent,
         TestComponent
       ],
       providers: [
@@ -114,6 +154,8 @@ describe('FormatterParserDirective', () => {
     paramsInputControl = component.fg.get('params')
     emptyInput = el.query(By.css('#empty'))
     emptyInputControl = component.fg.get('empty')
+    contentInput = el.query(By.css('#content'))
+    contentInputControl = component.fg.get('content')
     wrappedInput = el.query(By.css('#wrapped'))
     wrappedInputControl = component.fg.get('wrapped')
 
@@ -191,6 +233,24 @@ describe('FormatterParserDirective', () => {
     expect(emptyInputControl.value).toBe(resultValue)
   })
 
+  it('should transform model and view value with built in transform function in content section', () => {
+    const inputValue = 'ABCdef'
+    const resultValue = 'ABCDEF'
+    fixture.detectChanges()
+    // set model value
+    setInputValue(contentInput, inputValue)
+    expect(contentInput.nativeElement.value).toBe(resultValue)
+    expect(contentInputControl.value).toBe(resultValue)
+    // reset
+    setInputValue(contentInput, '')
+    fixture.detectChanges()
+    expect(contentInput.nativeElement.value).toBe('')
+    expect(contentInputControl.value).toBe(null)
+    // set view value
+    setInputValue(contentInput, inputValue)
+    expect(contentInput.nativeElement.value).toBe(resultValue)
+    expect(contentInputControl.value).toBe(resultValue)
+  })
 
   xit('should transform model and view value with built in transform function on wrapped inputs', () => {
     const inputValue = 'ABCdef'
@@ -238,7 +298,7 @@ describe('FormatterParserDirective Errors', () => {
 
   })
 
-  it('should format model value to view value with built in transform function', () => {
+  it('should throw if not input is present', () => {
     const emptyConfigMessage = 'You can applied the "formatterParser" directive only on inputs or elements containing inputs'
 
     expect(() => {

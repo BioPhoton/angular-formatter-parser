@@ -34,11 +34,11 @@ module.exports = function (config) {
         base: 'PhantomJS'
       }
     },
-    singleRun: true
+    singleRun: false
   };
 
 
-  if (process.env.CI && process.env.TRAVIS) {
+  if (process.env.TRAVIS) {
     cfg.browsers = ['TRAVIS_CI'];
     cfg.singleRun = true;
   }

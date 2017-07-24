@@ -1,8 +1,8 @@
 import {inject, TestBed} from '@angular/core/testing'
-import {FORMATTER_PARSER} from './formatter-parser.injectionToken'
-import {FormatterParserService} from './formatter-parser.service'
-import {IFormatterParserFn} from './struct/formatter-parser-function'
-import {IFormatterParserResult} from './struct/formatter-parser-result'
+import {FORMATTER_PARSER} from '../formatter-parser.injectionToken'
+import {FormatterParserService} from '../formatter-parser.service'
+import {IFormatterParserFn} from '../struct/formatter-parser-function'
+import {IFormatterParserResult} from '../struct/formatter-parser-result'
 
 
 function customFormatterFunction(v) {
