@@ -16,6 +16,8 @@ import {InputContextService} from './input-context.service'
 import {IFormatterParserConfig} from './struct/formatter-parser-config'
 import {IFormatterParserFn} from './struct/formatter-parser-function'
 
+declare var Ionic: any;
+
 const CONTROL_VALUE_ACCESSOR = {
   name: 'formatterParserValueAccessor',
   provide: NG_VALUE_ACCESSOR,
@@ -66,6 +68,13 @@ export class FormatterParserDirective implements ControlValueAccessor, OnInit {
   }
 
   ngOnInit(): void {
+    if (typeof Ionic === 'undefined') {
+      this.inputElement = this.getInputElementRef();
+      this.updateFormatterAndParser();
+    }
+  }
+
+  ngAfterViewInit(): void {
     this.inputElement = this.getInputElementRef();
     this.updateFormatterAndParser();
   }
