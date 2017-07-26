@@ -34,7 +34,7 @@ import { FormatterParserModule } from 'angular-formatter-parser';
 @NgModule({
   imports: [
     ...
-    FormatterParserModule.forRoot();
+    FormatterParserModule.forRoot()
   ]
   ...
 })
