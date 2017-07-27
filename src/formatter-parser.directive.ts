@@ -107,7 +107,7 @@ export class FormatterParserDirective implements ControlValueAccessor, AfterView
   writeValue(rawValue: any): void {
 
     // write value to view (visible text of the form control)
-    if(this.inputElement) {
+    if (this.inputElement) {
       this.inputElement.value = this.formatterParserView
         .reduce((state: any, transform: IFormatterParserFn) => transform(state).result, rawValue);
     }
