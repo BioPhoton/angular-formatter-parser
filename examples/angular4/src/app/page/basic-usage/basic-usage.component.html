@@ -7,7 +7,7 @@
     <form [formGroup]="basicFormGroup">
       <div class="form-group">
         <label>Name
-          <small>(target view and model)</small>
+          <small>(target view and model - capitalize input)</small>
         </label>
         <input type="text" class="form-control"
                [formControlName]="'name'" [formatterParser]="fpNameConfig">
@@ -17,7 +17,7 @@
 
       <div class="form-group">
         <label>Coupon Code
-          <small>(target view and model different)</small>
+          <small>(target view and model different - upper and lower case)</small>
         </label>
         <input type="text" class="form-control"
                [formControlName]="'couponcode'" [formatterParser]="fpCouponConfig">
@@ -28,7 +28,7 @@
 
       <div class="form-group">
         <label>9 Digit Code
-          <small>(custom transform function)</small>
+          <small>(custom transform function - add spaces for readability)</small>
         </label>
         <input type="text" class="form-control"
                [formControlName]="'code'" [formatterParser]="fpCodeConfig">

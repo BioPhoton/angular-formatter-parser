@@ -9,7 +9,6 @@ import { IFormatterParserConfig } from 'angular-formatter-parser/struct/formatte
 })
 export class BasicUsageComponent implements OnInit {
 
-
   basicFormGroup: FormGroup;
 
   fpNameConfig: IFormatterParserConfig;
