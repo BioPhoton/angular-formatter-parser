@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Angular Formatter Parser
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list [formGroup]="basicFormGroup">
+
+    <ion-item>
+      <ion-label floating>Name
+        <small>(target view and model - capitalize input)</small>
+      </ion-label>
+      <ion-input type="text" formControlName="name"
+        [formatterParser]="fpNameConfig"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Coupon Code
+        <small>(target view and model different - upper and lower case)</small>
+      </ion-label>
+      <ion-input type="text" formControlName="couponcode"
+        [formatterParser]="fpCouponConfig"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>9 Digit Code
+        <small>(custom transform function - add spaces for readability)</small>
+      </ion-label>
+      <ion-input type="text" formControlName="code"
+        [formatterParser]="fpCodeConfig"></ion-input>
+    </ion-item>
+
+  </ion-list>
+  {{basicFormGroup.get('couponcode').value}}
+  <pre>{{basicFormGroup.value | json}}</pre>
+</ion-content>
