@@ -1,5 +1,5 @@
 import {inject, TestBed} from '@angular/core/testing'
-import {FormatterParserService} from '../formatter-parser.service'
+import {FormatterParserCollectorService} from '../formatter-parser.service'
 import {FormatterParserModule} from '../index'
 
 describe('FormatterParserModule', () => {
@@ -12,7 +12,7 @@ describe('FormatterParserModule', () => {
     });
   });
 
-  it('should load Module without errors', inject([FormatterParserService], (service: FormatterParserService) => {
+  it('should load Module without errors', inject([FormatterParserCollectorService], (service: FormatterParserCollectorService) => {
     expect(service).toBeTruthy();
   }));
 

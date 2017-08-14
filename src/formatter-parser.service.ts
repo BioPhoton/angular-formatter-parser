@@ -4,7 +4,7 @@ import {FORMATTER_PARSER} from './formatter-parser.injectionToken'
 import {IFormatterParserFn} from './struct/formatter-parser-function'
 
 @Injectable()
-export class FormatterParserService {
+export class FormatterParserCollectorService {
 
   constructor(@Optional() @Inject(FORMATTER_PARSER) private FORMATTER_PARSER: IFormatterParserFn[]) {
   }

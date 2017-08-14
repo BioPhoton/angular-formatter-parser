@@ -5,14 +5,14 @@ import {
   forwardRef,
   HostListener,
   Input,
-  OnInit
+  OnInit, ViewChild
 } from '@angular/core'
 import {
   ControlValueAccessor,
   FormControl,
   NG_VALUE_ACCESSOR
 } from '@angular/forms'
-import {FormatterParserService} from './formatter-parser.service'
+import {FormatterParserCollectorService} from './formatter-parser.service'
 import {InputContextService} from './input-context.service'
 import {IFormatterParserConfig} from './struct/formatter-parser-config'
 import {IFormatterParserFn} from './struct/formatter-parser-function'
@@ -54,7 +54,7 @@ export class FormatterParserDirective implements ControlValueAccessor, AfterView
 
   constructor(
     private _elementRef: ElementRef,
-    private fps: FormatterParserService,
+    private fps: FormatterParserCollectorService,
     private inputContext: InputContextService
   ) {
 
@@ -101,7 +101,6 @@ export class FormatterParserDirective implements ControlValueAccessor, AfterView
     // refocus cursor to propper position after input
     this.inputContext.setSelection(this.inputElement);
   }
-
 
   // Formatter: Model to View
   writeValue(rawValue: any): void {

@@ -4,7 +4,7 @@ import {ReactiveFormsModule} from '@angular/forms'
 import {FormatterParser} from './formatter-parser'
 
 import {FormatterParserDirective} from './formatter-parser.directive'
-import {FormatterParserService} from './formatter-parser.service'
+import {FormatterParserCollectorService} from './formatter-parser.service'
 import {InputContextService} from './input-context.service'
 
 export * from './formatter-parser.directive'
@@ -27,7 +27,7 @@ export class FormatterParserModule {
     return {
       ngModule: FormatterParserModule,
       providers: [
-        FormatterParserService,
+        FormatterParserCollectorService,
         FormatterParser,
         InputContextService
       ]
