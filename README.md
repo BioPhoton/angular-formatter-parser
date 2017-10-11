@@ -17,6 +17,14 @@ Easy to implement and elegant to use it also provides the possibility to registe
 
 ![Angular-Formatter-Psrser](https://raw.githubusercontent.com/BioPhoton/angular-formatter-parser/master/resources/demo.gif)
 
+## Quick code example
+
+``` html
+// app.component.html
+<input type="text" [formatterParser]="{formatterParser:[{ name: 'toCapitalized' }]}">
+
+```
+
 ## Basic Usage:
 
 #### Implement Library
